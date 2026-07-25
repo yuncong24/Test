@@ -1581,25 +1581,28 @@
         
         <div class="ai-config-panel">
             <h3>🤖 DeepSeek AI助手配置</h3>
-            <div class="ai-config-row">
-                <label>API密钥：</label>
-                <input type="password" id="aiApiKey" placeholder="输入DeepSeek API密钥">
-            </div>
-            <div class="ai-config-row">
-                <label>模型选择：</label>
-                <select id="aiModel">
-                    <option value="deepseek-chat">DeepSeek-V3 (推荐)</option>
-                    <option value="deepseek-coder">DeepSeek-Coder</option>
-                </select>
-            </div>
-            <div class="ai-config-row">
-                <label>语言：</label>
-                <select id="aiLanguage">
-                    <option value="zh">中文</option>
-                    <option value="en">英文</option>
-                    <option value="zh-en">中英双语</option>
-                </select>
-            </div>
+              <div class="ai-config-row">
+                  <label>API密钥：</label>
+                  <input type="password" id="aiApiKey" placeholder="输入DeepSeek API密钥">
+              </div>
+              <div class="ai-config-row">
+                  <label>API端点：</label>
+                  <input type="text" id="aiApiUrl" placeholder="https://api.deepseek.com/v1/chat/completions" value="https://api.deepseek.com/v1/chat/completions">
+              </div>
+              <div class="ai-config-row">
+                  <label>模型选择：</label>
+                  <select id="aiModel">
+                      <option value="deepseek-v4-flash">DeepSeek-V4 flash </option>
+                  </select>
+              </div>
+              <div class="ai-config-row">
+                  <label>语言：</label>
+                  <select id="aiLanguage">
+                      <option value="zh">中文</option>
+                      <option value="en">英文</option>
+                      <option value="zh-en">中英双语</option>
+                  </select>
+              </div>
             <div class="ai-config-buttons">
                 <button class="btn-ai" onclick="testAIConnection()">🔗 测试连接</button>
                 <button class="btn-ai" onclick="saveAIConfig()">💾 保存配置</button>
@@ -3777,29 +3780,45 @@
         }
         
         let aiConfig = {
-            apiKey: '',
-            model: 'deepseek-chat',
-            language: 'zh'
-        };
+              apiKey: '',
+              apiUrl: 'https://api.deepseek.com/v1/chat/completions',
+              model: 'deepseek-v4-flash',
+              language: 'zh'
+          };
         
         function saveAIConfig() {
             aiConfig.apiKey = document.getElementById('aiApiKey').value;
+            aiConfig.apiUrl = document.getElementById('aiApiUrl').value;
             aiConfig.model = document.getElementById('aiModel').value;
             aiConfig.language = document.getElementById('aiLanguage').value;
-            
+
             localStorage.setItem('aiConfig', JSON.stringify(aiConfig));
             alert('AI配置已保存！');
         }
         
         function loadAIConfig() {
-            const saved = localStorage.getItem('aiConfig');
-            if (saved) {
-                aiConfig = JSON.parse(saved);
-                document.getElementById('aiApiKey').value = aiConfig.apiKey;
-                document.getElementById('aiModel').value = aiConfig.model;
-                document.getElementById('aiLanguage').value = aiConfig.language;
-            }
-        }
+              const saved = localStorage.getItem('aiConfig');
+              if (saved) {
+                  aiConfig = JSON.parse(saved);
+                  let needsSave = false;
+                  const deprecatedModels = ['deepseek-chat', 'deepseek-coder'];
+                  if (deprecatedModels.includes(aiConfig.model)) {
+                      aiConfig.model = 'deepseek-v4-flash';
+                      needsSave = true;
+                  }
+                  if (!aiConfig.apiUrl) {
+                      aiConfig.apiUrl = 'https://api.deepseek.com/v1/chat/completions';
+                      needsSave = true;
+                  }
+                  if (needsSave) {
+                      localStorage.setItem('aiConfig', JSON.stringify(aiConfig));
+                  }
+                  document.getElementById('aiApiKey').value = aiConfig.apiKey || '';
+                  document.getElementById('aiApiUrl').value = aiConfig.apiUrl || 'https://api.deepseek.com/v1/chat/completions';
+                  document.getElementById('aiModel').value = aiConfig.model || 'deepseek-v4-flash';
+                  document.getElementById('aiLanguage').value = aiConfig.language || 'zh';
+              }
+          }
         
         async function testAIConnection() {
             if (!aiConfig.apiKey) {
@@ -3813,7 +3832,7 @@
                 console.log('开始测试DeepSeek API连接...');
                 console.log('API密钥前缀:', aiConfig.apiKey.substring(0, 10) + '...');
                 console.log('使用模型:', aiConfig.model);
-                console.log('API端点:', 'https://api.deepseek.com/v1/chat/completions');
+                console.log('API端点:', aiConfig.apiUrl);
                 
                 const response = await callDeepSeekAPI('你好，请回复"连接成功"', 'test');
                 
@@ -3869,18 +3888,18 @@
         }
         
         async function callDeepSeekAPI(prompt, type = 'chat') {
-            if (!aiConfig.apiKey) {
-                throw new Error('请先配置API密钥');
-            }
-            
-            const endpoint = 'https://api.deepseek.com/v1/chat/completions';
-            
-            const systemPrompt = getSystemPrompt(type);
-            
-            console.log('发送API请求...');
-            console.log('端点:', endpoint);
-            console.log('模型:', aiConfig.model);
-            console.log('提示词类型:', type);
+              if (!aiConfig.apiKey) {
+                  throw new Error('请先配置API密钥');
+              }
+
+              const endpoint = aiConfig.apiUrl || 'https://api.deepseek.com/v1/chat/completions';
+
+              const systemPrompt = getSystemPrompt(type);
+
+              console.log('发送API请求...');
+              console.log('端点:', endpoint);
+              console.log('模型:', aiConfig.model);
+              console.log('提示词类型:', type);
             
             try {
                 const response = await fetch(endpoint, {
