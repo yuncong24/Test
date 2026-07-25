@@ -1409,6 +1409,369 @@
             }
         }
 
+        .free-chat-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10001;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .free-chat-modal.active {
+            display: flex;
+        }
+
+        .free-chat-container {
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .free-chat-header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .free-chat-header h3 {
+            margin: 0;
+            font-size: 1.3em;
+            font-weight: 700;
+        }
+
+        .free-chat-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .free-chat-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .free-chat-settings {
+            background: #f8f9fa;
+            padding: 15px 25px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .free-chat-setting-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .free-chat-setting-label {
+            font-size: 0.9em;
+            font-weight: 600;
+            color: #333;
+            white-space: nowrap;
+        }
+
+        .free-chat-toggle {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+
+        .free-chat-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .free-chat-toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 26px;
+        }
+
+        .free-chat-toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        .free-chat-toggle input:checked + .free-chat-toggle-slider {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        }
+
+        .free-chat-toggle input:checked + .free-chat-toggle-slider:before {
+            transform: translateX(24px);
+        }
+
+        .free-chat-setting-desc {
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        .free-chat-settings select {
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.9em;
+            background: white;
+            cursor: pointer;
+            min-width: 150px;
+        }
+
+        .free-chat-settings select:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+
+        .free-chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 25px;
+            background: #f8f9fa;
+            min-height: 400px;
+            max-height: 500px;
+        }
+
+        .free-chat-message {
+            margin-bottom: 20px;
+            display: flex;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .free-chat-message-user {
+            justify-content: flex-end;
+        }
+
+        .free-chat-message-ai {
+            justify-content: flex-start;
+        }
+
+        .free-chat-message-content {
+            max-width: 80%;
+            padding: 15px 20px;
+            border-radius: 18px;
+            line-height: 1.6;
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .free-chat-message-user .free-chat-message-content {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .free-chat-message-ai .free-chat-message-content {
+            background: white;
+            color: #333;
+            border: 1px solid #e0e0e0;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .free-chat-message-content p {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+
+        .free-chat-message-content code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .free-chat-message-content pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+
+        .free-chat-message-content pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+
+        .free-chat-thinking {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            color: #856404;
+            display: none;
+        }
+
+        .free-chat-thinking.active {
+            display: block;
+        }
+
+        .free-chat-thinking-title {
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .free-chat-thinking-content {
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .free-chat-input-container {
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            padding: 20px 25px;
+        }
+
+        .free-chat-input-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .free-chat-input-row textarea {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.95em;
+            font-family: inherit;
+            resize: none;
+            transition: border-color 0.3s;
+        }
+
+        .free-chat-input-row textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .free-chat-send {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .free-chat-send:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+        }
+
+        .free-chat-send:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .free-chat-message-typing {
+            display: flex;
+            gap: 5px;
+            padding: 10px 15px;
+        }
+
+        .free-chat-message-typing span {
+            width: 8px;
+            height: 8px;
+            background: #4CAF50;
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+
+        .free-chat-message-typing span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .free-chat-message-typing span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        @media (max-width: 768px) {
+            .free-chat-container {
+                width: 95%;
+                max-height: 95vh;
+            }
+            
+            .free-chat-messages {
+                padding: 15px;
+                min-height: 300px;
+                max-height: 400px;
+            }
+            
+            .free-chat-input-container {
+                padding: 15px;
+            }
+            
+            .free-chat-settings {
+                padding: 12px 15px;
+                gap: 15px;
+            }
+            
+            .free-chat-setting-label {
+                font-size: 0.85em;
+            }
+            
+            .free-chat-input-row {
+                flex-direction: column;
+            }
+            
+            .free-chat-send {
+                width: 100%;
+            }
+        }
+
         .theme-selector-panel {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             color: white;
@@ -1592,7 +1955,8 @@
               <div class="ai-config-row">
                   <label>模型选择：</label>
                   <select id="aiModel">
-                      <option value="deepseek-v4-flash">DeepSeek-V4 flash </option>
+                      <option value="deepseek-v4-flash">DeepSeek-V4 Flash (快速)</option>
+                      <option value="deepseek-v4-pro">DeepSeek-V4 Pro (深度思考)</option>
                   </select>
               </div>
               <div class="ai-config-row">
@@ -1606,7 +1970,8 @@
             <div class="ai-config-buttons">
                 <button class="btn-ai" onclick="testAIConnection()">🔗 测试连接</button>
                 <button class="btn-ai" onclick="saveAIConfig()">💾 保存配置</button>
-                <button class="btn-ai" onclick="openAIChat()">💬 打开AI对话</button>
+                <button class="btn-ai" onclick="openAIChat()">💬 AI助手（预设）</button>
+                <button class="btn-ai" onclick="openFreeChat()" style="background: rgba(76, 175, 80, 0.3); border-color: rgba(76, 175, 80, 0.8);">🎯 自由对话</button>
             </div>
             <div class="ai-loading" id="aiLoading">
                 <div class="ai-loading-spinner"></div>
@@ -1684,6 +2049,47 @@
                     <div class="ai-chat-input-row">
                         <textarea id="aiChatInput" placeholder="输入你的问题或需求..." rows="3"></textarea>
                         <button class="ai-chat-send" onclick="sendAIMessage()" id="aiSendBtn">发送</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="free-chat-modal" id="freeChatModal">
+            <div class="free-chat-container">
+                <div class="free-chat-header">
+                    <h3>🎯 DeepSeek 自由对话</h3>
+                    <button class="free-chat-close" onclick="closeFreeChat()">✕</button>
+                </div>
+                <div class="free-chat-settings">
+                    <div class="free-chat-setting-row">
+                        <label class="free-chat-setting-label">深度思考：</label>
+                        <label class="free-chat-toggle">
+                            <input type="checkbox" id="freeChatDeepThinking" onchange="toggleDeepThinking()">
+                            <span class="free-chat-toggle-slider"></span>
+                        </label>
+                        <span class="free-chat-setting-desc" id="deepThinkingStatus">已关闭</span>
+                    </div>
+                    <div class="free-chat-setting-row" id="deepThinkingDepthRow" style="display: none;">
+                        <label class="free-chat-setting-label">思考深度：</label>
+                        <select id="freeChatDepthLevel" onchange="updateDepthLevel()">
+                            <option value="standard">标准 (Standard)</option>
+                            <option value="deep">深度 (Deep)</option>
+                            <option value="expert">专家 (Expert)</option>
+                        </select>
+                        <span class="free-chat-setting-desc">控制AI思考的复杂度</span>
+                    </div>
+                </div>
+                <div class="free-chat-messages" id="freeChatMessages">
+                    <div class="free-chat-message free-chat-message-ai">
+                        <div class="free-chat-message-content">
+                            <p>你好！我是DeepSeek自由对话助手。这里没有预设提示词，你可以自由提问任何问题。开启深度思考可以让我进行更复杂的推理分析。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="free-chat-input-container">
+                    <div class="free-chat-input-row">
+                        <textarea id="freeChatInput" placeholder="输入你的问题或话题..." rows="3"></textarea>
+                        <button class="free-chat-send" onclick="sendFreeChatMessage()" id="freeChatSendBtn">发送</button>
                     </div>
                 </div>
             </div>
@@ -4283,6 +4689,372 @@
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
                 sendAIMessage();
+            }
+        });
+
+        let freeChatMessages = [];
+        let freeChatUseDeepThinking = false;
+        let freeChatDepthLevel = 'standard';
+
+        function openFreeChat() {
+            document.getElementById('freeChatModal').classList.add('active');
+            loadAIConfig();
+            freeChatMessages = [];
+            const messagesContainer = document.getElementById('freeChatMessages');
+            messagesContainer.innerHTML = `
+                <div class="free-chat-message free-chat-message-ai">
+                    <div class="free-chat-message-content">
+                        <p>你好！我是DeepSeek自由对话助手。这里没有预设提示词，你可以自由提问任何问题。开启深度思考可以让我进行更复杂的推理分析。</p>
+                    </div>
+                </div>
+            `;
+            document.getElementById('freeChatDeepThinking').checked = false;
+            freeChatUseDeepThinking = false;
+            document.getElementById('deepThinkingStatus').textContent = '已关闭';
+            document.getElementById('deepThinkingDepthRow').style.display = 'none';
+        }
+
+        function closeFreeChat() {
+            document.getElementById('freeChatModal').classList.remove('active');
+        }
+
+        function toggleDeepThinking() {
+            freeChatUseDeepThinking = document.getElementById('freeChatDeepThinking').checked;
+            const statusElement = document.getElementById('deepThinkingStatus');
+            const depthRow = document.getElementById('deepThinkingDepthRow');
+            
+            if (freeChatUseDeepThinking) {
+                statusElement.textContent = '已开启';
+                statusElement.style.color = '#4CAF50';
+                depthRow.style.display = 'flex';
+            } else {
+                statusElement.textContent = '已关闭';
+                statusElement.style.color = '#666';
+                depthRow.style.display = 'none';
+            }
+        }
+
+        function updateDepthLevel() {
+            freeChatDepthLevel = document.getElementById('freeChatDepthLevel').value;
+        }
+
+        async function callDeepSeekFreeChatAPI(messages, onChunk) {
+            if (!aiConfig.apiKey) {
+                throw new Error('请先配置API密钥');
+            }
+
+            const endpoint = aiConfig.apiUrl || 'https://api.deepseek.com/v1/chat/completions';
+            
+            let model = aiConfig.model;
+            if (freeChatUseDeepThinking) {
+                model = 'deepseek-v4-pro';
+            }
+
+            const effortMap = {
+                standard: 'high',
+                deep: 'high',
+                expert: 'max'
+            };
+
+            const requestBody = {
+                model: model,
+                messages: messages,
+                max_tokens: 3000,
+                stream: true
+            };
+
+            if (freeChatUseDeepThinking) {
+                requestBody.reasoning_effort = effortMap[freeChatDepthLevel] || 'high';
+                requestBody.thinking = { type: 'enabled' };
+            } else {
+                requestBody.temperature = 0.7;
+            }
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${aiConfig.apiKey}`
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    const statusCode = response.status;
+                    let errorMessage = `API调用失败 (状态码: ${statusCode})`;
+                    
+                    if (errorData.error && errorData.error.message) {
+                        errorMessage += ` - ${errorData.error.message}`;
+                    }
+                    
+                    if (statusCode === 401) {
+                        errorMessage += ' (未授权 - 请检查API密钥)';
+                    } else if (statusCode === 403) {
+                        errorMessage += ' (禁止访问 - 权限不足)';
+                    } else if (statusCode === 429) {
+                        errorMessage += ' (请求过多 - 请稍后重试)';
+                    } else if (statusCode === 500) {
+                        errorMessage += ' (服务器错误 - 请稍后重试)';
+                    } else if (statusCode === 503) {
+                        errorMessage += ' (服务不可用 - DeepSeek API暂时不可用)';
+                    }
+                    
+                    throw new Error(errorMessage);
+                }
+
+                if (!response.body) {
+                    const data = await response.json();
+                    if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+                        throw new Error('API响应格式异常');
+                    }
+                    const message = data.choices[0].message;
+                    if (onChunk && message.content) {
+                        onChunk({ type: 'content', content: message.content });
+                    }
+                    if (onChunk && message.reasoning_content) {
+                        onChunk({ type: 'reasoning', content: message.reasoning_content });
+                    }
+                    return {
+                        content: message.content || '',
+                        reasoning: message.reasoning_content || null,
+                        tool_calls: message.tool_calls || null
+                    };
+                }
+                
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder('utf-8');
+                
+                let fullContent = '';
+                let fullReasoning = '';
+                let hasToolCalls = false;
+                let receivedData = false;
+
+                try {
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        
+                        if (done) {
+                            break;
+                        }
+                        
+                        const chunkStr = decoder.decode(value, { stream: true });
+                        const lines = chunkStr.split('\n');
+                        
+                        for (const line of lines) {
+                            if (line.startsWith('data: ')) {
+                                receivedData = true;
+                                const dataStr = line.slice(6);
+                                if (dataStr === '[DONE]') {
+                                    continue;
+                                }
+                                
+                                try {
+                                    const data = JSON.parse(dataStr);
+                                    if (data.choices && data.choices[0]) {
+                                        const delta = data.choices[0].delta;
+                                        
+                                        if (delta && delta.content) {
+                                            fullContent += delta.content;
+                                            if (onChunk) {
+                                                onChunk({ type: 'content', content: delta.content });
+                                            }
+                                        }
+                                        
+                                        if (delta && delta.reasoning_content) {
+                                            fullReasoning += delta.reasoning_content;
+                                            if (onChunk) {
+                                                onChunk({ type: 'reasoning', content: delta.reasoning_content });
+                                            }
+                                        }
+                                        
+                                        if (delta && delta.tool_calls) {
+                                            hasToolCalls = true;
+                                        }
+                                    }
+                                } catch (e) {
+                                    console.warn('JSON parse error:', e, dataStr);
+                                }
+                            }
+                        }
+                    }
+                } catch (streamError) {
+                    console.error('Stream read error:', streamError);
+                }
+                
+                if (!receivedData && !fullContent) {
+                    throw new Error('未接收到任何数据，请检查网络连接');
+                }
+                
+                return {
+                    content: fullContent,
+                    reasoning: fullReasoning || null,
+                    tool_calls: hasToolCalls ? null : null
+                };
+            } catch (error) {
+                console.error('API call error:', error);
+                if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                    throw new Error('网络连接失败 - 请检查网络连接和防火墙设置');
+                }
+                throw error;
+            }
+        }
+
+        async function sendFreeChatMessage() {
+            const input = document.getElementById('freeChatInput');
+            const message = input.value.trim();
+            
+            if (!message) {
+                alert('请输入消息内容');
+                return;
+            }
+            
+            if (!aiConfig.apiKey) {
+                alert('请先配置API密钥');
+                return;
+            }
+            
+            freeChatMessages.push({ role: 'user', content: message });
+            addFreeChatUserMessage(message);
+            input.value = '';
+            
+            const existingTyping = document.querySelector('.free-chat-message-typing');
+            if (existingTyping) {
+                existingTyping.closest('.free-chat-message').remove();
+            }
+            
+            const messagesContainer = document.getElementById('freeChatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'free-chat-message free-chat-message-ai';
+            messageDiv.innerHTML = `
+                <div class="free-chat-message-content">
+                    <div class="free-chat-thinking" id="freeChatThinking-${Date.now()}"></div>
+                    <p id="freeChatContent-${Date.now()}"></p>
+                </div>
+            `;
+            messagesContainer.appendChild(messageDiv);
+            scrollFreeChatToBottom();
+            
+            const thinkingElement = messageDiv.querySelector('.free-chat-thinking');
+            const contentElement = messageDiv.querySelector('p');
+            
+            let fullContent = '';
+            let fullReasoning = '';
+            
+            try {
+                contentElement.textContent = '正在思考...';
+                
+                const onChunk = (chunk) => {
+                    if (chunk.type === 'content') {
+                        contentElement.textContent = '';
+                        fullContent += chunk.content;
+                        contentElement.textContent = fullContent;
+                    } else if (chunk.type === 'reasoning') {
+                        fullReasoning += chunk.content;
+                        thinkingElement.innerHTML = `
+                            <div class="free-chat-thinking-title">🧠 思考过程</div>
+                            <div class="free-chat-thinking-content">${formatAIResponse(fullReasoning)}</div>
+                        `;
+                        thinkingElement.classList.add('active');
+                    }
+                    scrollFreeChatToBottom();
+                };
+                
+                const response = await callDeepSeekFreeChatAPI(freeChatMessages, onChunk);
+                
+                if (!response.content && !response.reasoning) {
+                    contentElement.textContent = '抱歉，AI没有返回任何内容';
+                    return;
+                }
+                
+                const assistantMessage = {
+                    role: 'assistant',
+                    content: response.content
+                };
+                
+                if (response.reasoning) {
+                    assistantMessage.reasoning_content = response.reasoning;
+                }
+                
+                if (response.tool_calls) {
+                    assistantMessage.tool_calls = response.tool_calls;
+                }
+                
+                freeChatMessages.push(assistantMessage);
+                
+                contentElement.innerHTML = formatAIResponse(response.content);
+            } catch (error) {
+                console.error('Free chat error:', error);
+                contentElement.innerHTML = `抱歉，发生错误：${escapeHtml(error.message)}`;
+            }
+        }
+
+        function addFreeChatUserMessage(message) {
+            const messagesContainer = document.getElementById('freeChatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'free-chat-message free-chat-message-user';
+            messageDiv.innerHTML = `<div class="free-chat-message-content"><p>${escapeHtml(message)}</p></div>`;
+            messagesContainer.appendChild(messageDiv);
+            scrollFreeChatToBottom();
+        }
+
+        function addFreeChatAIMessage(message, reasoning) {
+            const messagesContainer = document.getElementById('freeChatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'free-chat-message free-chat-message-ai';
+            
+            let thinkingHTML = '';
+            if (reasoning && reasoning.trim()) {
+                thinkingHTML = `
+                    <div class="free-chat-thinking active">
+                        <div class="free-chat-thinking-title">🧠 思考过程</div>
+                        <div class="free-chat-thinking-content">${formatAIResponse(reasoning)}</div>
+                    </div>
+                `;
+            }
+            
+            messageDiv.innerHTML = `
+                <div class="free-chat-message-content">
+                    ${thinkingHTML}
+                    <p>${formatAIResponse(message)}</p>
+                </div>
+            `;
+            messagesContainer.appendChild(messageDiv);
+            scrollFreeChatToBottom();
+        }
+
+        function addFreeChatTypingIndicator() {
+            const messagesContainer = document.getElementById('freeChatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'free-chat-message free-chat-message-ai';
+            typingDiv.innerHTML = `
+                <div class="free-chat-message-content">
+                    <div class="free-chat-message-typing">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            `;
+            messagesContainer.appendChild(typingDiv);
+            scrollFreeChatToBottom();
+            return typingDiv;
+        }
+
+        function removeFreeChatTypingIndicator(typingDiv) {
+            typingDiv.remove();
+        }
+
+        function scrollFreeChatToBottom() {
+            const messagesContainer = document.getElementById('freeChatMessages');
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        document.getElementById('freeChatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendFreeChatMessage();
             }
         });
     </script>
