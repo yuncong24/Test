@@ -16,7 +16,7 @@
         }
         
         .header {
-            background: linear-gradient(135deg, #0981e4b6 0%, #100388a6 100%);
+            background: linear-gradient(135deg, #01847f 0%, #f9d2e4 100%);
             color: white;
             padding: 25px 30px;
             border-radius: 8px;
@@ -78,7 +78,7 @@
             color: #1a1a1a;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 3px solid #C41E3A;
+            border-bottom: 3px solid #17458b85;
         }
         
         .subsection-title {
@@ -796,7 +796,7 @@
             left: 20px;
             transform: translateY(-50%);
             z-index: 1000;
-            background: linear-gradient(135deg, #c41e9244 0%, #0d33dd85 100%);
+            background: linear-gradient(135deg, #10a3dd31 0%, #b907b900 100%);
             border-radius: 12px;
             padding: 15px 20px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
@@ -827,7 +827,7 @@
         }
         
         .floating-label {
-            color: white;
+            color: rgb(0, 0, 0);
             font-weight: 600;
             font-size: 0.9em;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -838,7 +838,7 @@
             bottom: 20px;
             left: 20px;
             z-index: 1001;
-            background: linear-gradient(135deg, #1e29c467 0%, #220fce85 100%);
+            background: linear-gradient(135deg, #10a3dd31 0%, #b907b900 100%);
             color: white;
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
@@ -883,10 +883,10 @@
         
         .floating-store-selector select:focus {
             outline: none;
-            border-color: #c41e1e;
-            box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.2);
+            border-color: #6a6bac4d;
+            box-shadow: 0 0 0 3px rgba(30, 33, 196, 0.2);
         }
-        
+    
         @media (max-width: 1400px) {
             .main-content {
                 grid-template-columns: 1fr;
@@ -932,7 +932,7 @@
         }
         
         .ai-config-panel {
-            background: linear-gradient(135deg, #66ea92 0%, #4ba288 100%);
+            background: linear-gradient(135deg, #ED9874 0%, #e9eeb9 100%);
             color: white;
             padding: 20px;
             border-radius: 8px;
@@ -1054,7 +1054,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0);
             z-index: 10000;
             align-items: center;
             justify-content: center;
@@ -1064,21 +1064,22 @@
             display: flex;
         }
         
-        .ai-chat-container {
-            width: 90%;
+       .ai-chat-container {
+             width: 90%;
             max-width: 800px;
             max-height: 90vh;
-            background: white;
+            background: rgba(4, 101, 146, 0.041);
+            backdrop-filter: blur(3px);
             border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.685);
             display: flex;
             flex-direction: column;
             overflow: hidden;
-        }
+}
         
         .ai-chat-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(180deg, #24039c00 0%, #e617ca00 100%);
+            color: rgb(11, 21, 109);
             padding: 20px 25px;
             display: flex;
             justify-content: space-between;
@@ -1112,14 +1113,15 @@
             transform: rotate(90deg);
         }
         
-        .ai-chat-messages {
+       .ai-chat-messages {
             flex: 1;
             overflow-y: auto;
             padding: 25px;
-            background: #f8f9fa;
+            /* 把原来 background: #f8f9fa; 注释或者删掉 */
+            background: transparent;  /* ✅设置透明，让父容器的半透效果透出来 */
             min-height: 400px;
             max-height: 500px;
-        }
+}
         
         .ai-message {
             margin-bottom: 20px;
@@ -1198,7 +1200,7 @@
         }
         
         .ai-chat-input-container {
-            background: white;
+            background: transparent;
             border-top: 1px solid #e0e0e0;
             padding: 20px 25px;
         }
@@ -1223,6 +1225,7 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
         }
         
         .ai-chat-tool-btn:hover {
@@ -1233,8 +1236,8 @@
         }
         
         .ai-chat-product-info {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
-            border: 2px solid #667eea;
+            background: transparent;
+            border: 2px solid #00000025;
             border-radius: 12px;
             padding: 20px;
             margin-bottom: 15px;
@@ -1243,7 +1246,7 @@
         .ai-chat-product-title {
             font-size: 1.1em;
             font-weight: 700;
-            color: #667eea;
+            color: #00000094;
             margin-bottom: 15px;
             text-align: center;
         }
@@ -1258,7 +1261,7 @@
             resize: vertical;
             margin-bottom: 15px;
             transition: border-color 0.3s;
-            background: white;
+            background: transparent;
         }
         
         .ai-chat-product-info textarea:focus {
@@ -1282,6 +1285,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
         
         .ai-chat-generate-btn:hover {
@@ -1773,7 +1777,7 @@
         }
 
         .theme-selector-panel {
-            background: linear-gradient(135deg, #00000073 0%, #000000da 100%);
+            background: linear-gradient(135deg, #012696 0%, #A4E2C6 100%);
             color: white;
             padding: 20px;
             border-radius: 8px;
@@ -1968,10 +1972,10 @@
                   </select>
               </div>
             <div class="ai-config-buttons">
-                <button class="btn-ai" onclick="testAIConnection()">🔗 测试连接</button>
-                <button class="btn-ai" onclick="saveAIConfig()">💾 保存配置</button>
-                <button class="btn-ai" onclick="openAIChat()">💬 AI助手（预设）</button>
-                <button class="btn-ai" onclick="openFreeChat()" style="background: rgba(76, 175, 80, 0.3); border-color: rgba(76, 175, 80, 0.8);">🎯 自由对话</button>
+                <button class="btn-ai" onclick="testAIConnection()"> 测试连接</button>
+                <button class="btn-ai" onclick="saveAIConfig()"> 保存配置</button>
+                <button class="btn-ai" onclick="openAIChat()"> AI协作</button>
+                <button class="btn-ai" onclick="openFreeChat()"> 自由对话</button>
             </div>
             <div class="ai-loading" id="aiLoading">
                 <div class="ai-loading-spinner"></div>
@@ -2046,10 +2050,10 @@
                         <textarea id="aiProductInfoInput" placeholder="输入产品信息（如：产品名称、主要特点、用途、目标市场等）..." rows="4"></textarea>
                         <button class="ai-chat-generate-btn" onclick="generateProductInfo()"> 智能生成产品信息</button>
                     </div>
-                    <div class="ai-chat-input-row">
+                    <!--<div class="ai-chat-input-row">
                         <textarea id="aiChatInput" placeholder="输入你的问题或需求..." rows="3"></textarea>
                         <button class="ai-chat-send" onclick="sendAIMessage()" id="aiSendBtn">发送</button>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
@@ -2599,9 +2603,9 @@
             </div>
             
             <div class="preview-section">
-                <h2 class="section-title">👁️ 实时预览</h2>
+                <h2 class="section-title"> 预览</h2>
                 <iframe id="previewFrame" class="preview-frame"></iframe>
-                <button class="btn btn-primary" style="margin-top: 15px; width: 100%;" onclick="updatePreview()">🔄 更新预览</button>
+                <button class="btn btn-primary" style="margin-top: 15px; width: 100%;" onclick="updatePreview()"> 更新预览</button>
             </div>
         </div>
     </div>
