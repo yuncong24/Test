@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>产品模板编辑器 - 增强版</title>
-    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNOC0xLjc1YTkuNzUgOS43NSAwIDAgMCAwIDE5LjVhOS43NSA5Ljc1IDAgMCAwIDAtMTkuNXoiIGZpbGw9IiNDNDFFM0EiLz48cGF0aCBkPSJNOC43NSAyLjI1YS43NS43NSAwIDAgMSAuNSAxLjVhLjc1Ljc1IDAgMCAxLTEuNSAwLjc1Ljc1IDAgMCAxLS41LTEuNWEuNzUuNzUgMCAwIDEgMS41IDB6bS0xLjUgNGExLjUgMS41IDAgMCAwLTIgMWExLjUgMS41IDAgMCAwIDIgMWExLjUgMS41IDAgMCAwIDAtMm0zIDBhMS41IDEuNSAwIDAgMCAyIDFhMS41IDEuNSAwIDAgMC0yIDFhMS41IDEuNSAwIDAgMCAwLTJ6bS0zIDRhMS41IDEuNSAwIDAgMC0yIDFhMS41IDEuNSAwIDAgMCAyIDFhMS41IDEuNSAwIDAgMCAwLTJ6bTMgMGExLjUgMS41IDAgMCAwIDIgMWExLjUgMS41IDAgMCAwLTIgMWExLjUgMS41IDAgMCAwIDAtMnptLTMgNGExLjUgMS41IDAgMCAwLTIgMWExLjUgMS41IDAgMCAwIDIgMWExLjUgMS41IDAgMCAwIDAtMm0zIDBhMS41IDEuNSAwIDAgMCAyIDFhMS41IDEuNSAwIDAgMC0yIDFhMS41IDEuNSAwIDAgMCAwLTJ6Ii8+PC9zdmc+" type="image/svg+xml">
+    <title>listing 详情描述编辑器</title>
+    <link rel="icon" href="./image/favicon-.png"> 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; background: #f0f2f5; }
@@ -16,12 +16,12 @@
         }
         
         .header {
-            background: linear-gradient(135deg, #C41E3A 0%, #8B0000 100%);
+            background: linear-gradient(135deg, #0981e4b6 0%, #100388a6 100%);
             color: white;
             padding: 25px 30px;
             border-radius: 8px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
         .header h1 {
@@ -471,7 +471,7 @@
         
         .modal-header {
             padding: 20px 25px;
-            background: linear-gradient(135deg, #C41E3A 0%, #8B0000 100%);
+            background: linear-gradient(135deg, #1e29c444 0%, #2a008b93 100%);
             color: white;
             border-radius: 12px 12px 0 0;
             display: flex;
@@ -796,12 +796,12 @@
             left: 20px;
             transform: translateY(-50%);
             z-index: 1000;
-            background: linear-gradient(135deg, #C41E3A 0%, #8B0000 100%);
+            background: linear-gradient(135deg, #c41e9244 0%, #0d33dd85 100%);
             border-radius: 12px;
             padding: 15px 20px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2); 
+            backdrop-filter: blur(1px);
             transition: all 0.3s ease;
         }
         
@@ -811,7 +811,7 @@
         }
         
         .floating-store-selector:hover {
-            box-shadow: 0 12px 32px rgba(196, 30, 58, 0.4);
+            box-shadow: 0 12px 32px rgba(30, 108, 196, 0.4);
             transform: translateY(-50%) scale(1.02);
         }
         
@@ -838,7 +838,7 @@
             bottom: 20px;
             left: 20px;
             z-index: 1001;
-            background: linear-gradient(135deg, #C41E3A 0%, #8B0000 100%);
+            background: linear-gradient(135deg, #1e29c467 0%, #220fce85 100%);
             color: white;
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
@@ -855,7 +855,7 @@
         
         .toggle-store-btn:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 16px rgba(196, 30, 58, 0.4);
+            box-shadow: 0 6px 16px rgba(30, 108, 196, 0.4);
         }
         
         .toggle-store-btn:active {
@@ -883,7 +883,7 @@
         
         .floating-store-selector select:focus {
             outline: none;
-            border-color: #C41E3A;
+            border-color: #c41e1e;
             box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.2);
         }
         
@@ -932,7 +932,7 @@
         }
         
         .ai-config-panel {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #66ea92 0%, #4ba288 100%);
             color: white;
             padding: 20px;
             border-radius: 8px;
@@ -1773,7 +1773,7 @@
         }
 
         .theme-selector-panel {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, #00000073 0%, #000000da 100%);
             color: white;
             padding: 20px;
             border-radius: 8px;
@@ -1938,12 +1938,12 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🛠️ 产品模板编辑器 - 增强版</h1>
-            <p>完整编辑产品图片、导航栏、描述、规格和底部导航，实时预览效果</p>
+            <h1>Lishting 详情描述编辑器</h1>
+            <p>eBay 美国站专用</p>
         </div>
         
         <div class="ai-config-panel">
-            <h3>🤖 DeepSeek AI助手配置</h3>
+            <h3> DeepSeek AI助手配置</h3>
               <div class="ai-config-row">
                   <label>API密钥：</label>
                   <input type="password" id="aiApiKey" placeholder="输入DeepSeek API密钥">
@@ -2024,7 +2024,7 @@
         <div class="ai-chat-modal" id="aiChatModal">
             <div class="ai-chat-container">
                 <div class="ai-chat-header">
-                    <h3>🤖 DeepSeek AI助手</h3>
+                    <h3> DeepSeek AI助手</h3>
                     <button class="ai-chat-close" onclick="closeAIChat()">✕</button>
                 </div>
                 <div class="ai-chat-messages" id="aiChatMessages">
@@ -2036,15 +2036,15 @@
                 </div>
                 <div class="ai-chat-input-container">
                     <div class="ai-chat-toolbar">
-                        <button class="ai-chat-tool-btn" onclick="insertQuickPrompt('生成产品标题')" title="生成产品标题">📝 生成标题</button>
-                        <button class="ai-chat-tool-btn" onclick="insertQuickPrompt('优化产品描述')" title="优化产品描述">✨ 优化描述</button>
-                        <button class="ai-chat-tool-btn" onclick="insertQuickPrompt('生成产品规格')" title="生成产品规格">📋 生成规格</button>
-                        <button class="ai-chat-tool-btn" onclick="insertQuickPrompt('翻译成英文')" title="翻译成英文">🌐 翻译</button>
+                        <button class="ai-chat-tool-btn" onclick="insertQuickPrompt('生成产品标题')" title="生成产品标题"> 生成标题</button>
+                        <button class="ai-chat-tool-btn" onclick="insertQuickPrompt('优化产品描述')" title="优化产品描述"> 优化描述</button>
+                        <button class="ai-chat-tool-btn" onclick="insertQuickPrompt('生成产品规格')" title="生成产品规格"> 生成规格</button>
+                        <button class="ai-chat-tool-btn" onclick="insertQuickPrompt('翻译成英文')" title="翻译成英文"> 翻译</button>
                     </div>
                     <div class="ai-chat-product-info">
-                        <div class="ai-chat-product-title">🚀 智能产品信息生成</div>
+                        <div class="ai-chat-product-title"> 智能产品信息生成</div>
                         <textarea id="aiProductInfoInput" placeholder="输入产品信息（如：产品名称、主要特点、用途、目标市场等）..." rows="4"></textarea>
-                        <button class="ai-chat-generate-btn" onclick="generateProductInfo()">✨ 智能生成产品信息</button>
+                        <button class="ai-chat-generate-btn" onclick="generateProductInfo()"> 智能生成产品信息</button>
                     </div>
                     <div class="ai-chat-input-row">
                         <textarea id="aiChatInput" placeholder="输入你的问题或需求..." rows="3"></textarea>
@@ -2057,7 +2057,7 @@
         <div class="free-chat-modal" id="freeChatModal">
             <div class="free-chat-container">
                 <div class="free-chat-header">
-                    <h3>🎯 DeepSeek 自由对话</h3>
+                    <h3> DeepSeek 自由对话</h3>
                     <button class="free-chat-close" onclick="closeFreeChat()">✕</button>
                 </div>
                 <div class="free-chat-settings">
@@ -2121,10 +2121,10 @@
                     <label>产品标题</label>
                     <div style="display: flex; gap: 10px;">
                         <input type="text" id="productTitle" placeholder="输入产品标题" style="flex: 1;">
-                        <button class="ai-toolbar-btn" onclick="aiGenerateTitle()" title="AI生成标题">
+                        <!--<button class="ai-toolbar-btn" onclick="aiGenerateTitle()" title="AI生成标题">
                             <span>🤖</span>
                             <span>生成标题</span>
-                        </button>
+                        </button>-->
                     </div>
                 </div>
                 
@@ -2145,7 +2145,7 @@
                             <textarea id="batchImageUrlInput" placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg&#10;https://example.com/image3.jpg" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 0.95em; min-height: 100px; resize: vertical;"></textarea>
                             <button class="btn btn-add" onclick="addBatchImageUrls()" style="margin-top: 10px; width: 100%;">批量添加</button>
                         </div>
-                        <div class="image-buttons-container">
+                        <!--<div class="image-buttons-container">
                             <button class="btn-add-image btn-single" onclick="addImage()">
                                 <span class="btn-icon">📷</span>
                                 <span>单张添加(Base64编码，不推荐)</span>
@@ -2154,7 +2154,7 @@
                                 <span class="btn-icon">📁</span>
                                 <span>批量添加（Base64编码，不推荐）</span>
                             </button>
-                        </div>
+                        </div>-->
                         <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="handleImageUpload(this)">
                         <input type="file" id="multipleImageInput" accept="image/*" multiple style="display: none;" onchange="handleMultipleImageUpload(this)">
                     </div>
@@ -2234,7 +2234,7 @@
                                         </div>
                                         <button class="toolbar-btn" onclick="formatText('descEditor', 'removeFormat')" title="清除格式">✕</button>
                                     </div>
-                                    <div class="toolbar-group">
+                                    <!--<div class="toolbar-group">
                                         <button class="ai-toolbar-btn" onclick="aiGenerateDescription()" title="AI生成描述">
                                             <span>🤖</span>
                                             <span>生成</span>
@@ -2243,7 +2243,7 @@
                                             <span>✨</span>
                                             <span>优化</span>
                                         </button>
-                                    </div>
+                                    </div>-->
                                 </div>
                                 <div class="editor-content" id="descEditor" contenteditable="true">
                                 </div>
@@ -2391,7 +2391,7 @@
                                         </div>
                                         <button class="toolbar-btn" onclick="formatText('paymentEditor', 'removeFormat')" title="清除格式">✕</button>
                                     </div>
-                                    <div class="toolbar-group">
+                                    <!--<div class="toolbar-group">
                                         <button class="ai-toolbar-btn" onclick="aiGeneratePayment()" title="AI生成支付信息">
                                             <span>🤖</span>
                                             <span>生成</span>
@@ -2400,7 +2400,7 @@
                                             <span>✨</span>
                                             <span>优化</span>
                                         </button>
-                                    </div>
+                                    </div>-->
                                 </div>
                                 <div class="editor-content" id="paymentEditor" contenteditable="true">
                                 </div>
@@ -2664,10 +2664,10 @@
                     border: '#F1FFE5'
                 },
                 warmTaupe: {
-                    name: 'Warm Taupe',
-                    desc: '暖调灰褐色',
-                    primary: '#6B5E51',
-                    secondary: '#928271',
+                    name: 'Makita',
+                    desc: '牧田配色',
+                    primary: '#129CAD',
+                    secondary: '#2C7781',
                     text: '#2C2620',
                     bg: '#FDFBF8',
                     border: '#E4DFD9'
