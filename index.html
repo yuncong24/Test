@@ -2155,12 +2155,253 @@
             color: #666;
             font-size: 0.9em;
         }
+
+        /* ============ 登录遮罩 ============ */
+        #loginOverlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* 本地图片背景：login-bg.jpg 与 index.html 同目录 */
+            background-image: url('login-bg.jpg?v=20260827');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #0b0e16; /* 图片加载失败时的兜底色 */
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        #loginOverlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            /* 暗化遮罩：保证卡片在任意图片上都清晰可读 */
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(5, 7, 12, 0.288) 50%, rgba(255, 255, 255, 0) 100%);
+            pointer-events: none;
+        }
+        #loginOverlay::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            /* 细网格质感层（保留香槟金高级感） */
+            background-image:
+                linear-gradient(rgba(201, 170, 97, 0.11) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201,169,97,0.11) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        .login-card {
+            position: relative;
+            width: 360px;
+            max-width: 92vw;
+            padding: 42px 38px 34px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.527) 0%, rgb(255, 255, 255) 100%);
+            border: 1px solid rgba(97, 133, 201, 0.199);
+            border-radius: 10px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.76), inset 0 1px 0 rgba(255,255,255,0.06);
+            backdrop-filter: blur(14px);
+        }
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #03429656, transparent);
+            border-radius: 10px 10px 0 0;
+        }
+        .login-brand {
+            text-align: center;
+            margin-bottom: 26px;
+        }
+        .login-brand .logo-mark {
+            display: inline-block;
+            width: 46px; height: 46px;
+            line-height: 44px;
+            border: 1.5px solid #000000;
+            color: #070500;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-radius: 50%;
+            margin-bottom: 12px;
+        }
+        .login-brand h2 {
+            color: #000000;
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .login-brand p {
+            color: #000000;
+            font-size: 11px;
+            margin-top: 4px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .login-field {
+            
+            position: relative;
+            margin-bottom: 18px;
+        }
+        .login-field label {
+
+            display: block;
+            color: #000000;
+            font-size: 11px;
+            line-height: 16px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 7px;
+        }
+        .login-field input {
+            width: 100%;
+            padding: 11px 14px;
+            background: rgb(255, 255, 255);
+            border: 1px solid rgba(93, 5, 145, 0.22);
+            border-radius: 5px;
+            color: #000000;
+            font-size: 14px;
+            transition: border-color 0.25s, box-shadow 0.25s;
+            outline: none;
+        }
+        .login-field input::placeholder { color: #4a5060; }
+        .login-field input:focus {
+            border-color: #1c19d3;
+            box-shadow: 0 0 0 3px rgba(201,169,97,0.12);
+        }
+        .login-field input.pass-with-toggle {
+            padding-right: 40px;
+            position: relative;
+        }
+        .pass-toggle {
+            position: absolute;
+            top: 45px;
+            right: 8px;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            color: #6a7080;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: color 0.2s, background 0.2s;
+            padding: 0;
+            line-height: 1;
+        }
+        .pass-toggle:hover { color: #1d13af56; background: rgba(201,169,97,0.08); }
+        .pass-toggle svg { width: 17px; height: 17px; display: block; }
+        .login-submit {
+            width: 100%;
+            margin-top: 8px;
+            padding: 12px;
+            background: transparent;
+            border: none;
+            border-radius: 5px;
+            color: #1a1408;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.25s, filter 0.25s;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            border:2px solid rgba(255,255,255,0.2);
+        }
+        .login-submit:hover {
+            filter: brightness(1.08);
+            box-shadow: 0 8px 24px rgba(68, 128, 219, 0.28);
+            transform: translateY(-1px);
+        }
+        .login-submit:active { transform: translateY(0); }
+        .login-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+        .login-error {
+            min-height: 16px;
+            margin-top: 12px;
+            text-align: center;
+            color: #e06b6b;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+        .login-foot {
+            margin-top: 22px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            color: #5a6070;
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+        .login-loading {
+            display: inline-block;
+            width: 12px; height: 12px;
+            border: 1.5px solid rgba(26,20,8,0.3);
+            border-top-color: #1a1408;
+            border-radius: 50%;
+            animation: loginSpin 0.7s linear infinite;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        @keyframes loginSpin { to { transform: rotate(360deg); } }
+
+        /* 登出按钮（已登录后显示在右上） */
+        #logoutBtn {
+            position: fixed;
+            top: 18px;
+            right: 4px;
+            z-index: 1000;
+            padding: 6px 14px;
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(201,169,97,0.35);
+            border-radius: 4px;
+            font-size: 15px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            transition: background 0.2s, color 0.2s;
+        }
+        #logoutBtn:hover { background: #ff0101; color: #1a1408; }
     </style>
 </head>
 <body>
 
-    
-    
+    <!-- 登录遮罩：未登录时覆盖整页 -->
+    <div id="loginOverlay">
+        <form class="login-card" id="loginForm" autocomplete="off">
+            <div class="login-brand">
+                <span class="logo-mark">L</span>
+                <h2>Lishting 编辑器</h2>
+                <p>Authorized Access Only</p>
+            </div>
+            <div class="login-field">
+                <label for="loginUser">账号</label>
+                <input type="text" id="loginUser" placeholder="请输入账号" autocomplete="off" required>
+            </div>
+            <div class="login-field">
+                <label for="loginPass">密码</label>
+                <input type="password" id="loginPass" class="pass-with-toggle" placeholder="请输入密码" autocomplete="off" required>
+                <button type="button" class="pass-toggle" id="passToggle" aria-label="显示/隐藏密码" title="显示/隐藏密码">
+                    <svg id="passToggleIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </button>
+            </div>
+            <button type="submit" class="login-submit" id="loginBtn">登 录</button>
+            <div class="login-error" id="loginError"></div>
+            <div class="login-foot">eBay 美国站 · 详情描述编辑系统</div>
+        </form>
+    </div>
+
+    <button id="logoutBtn" style="display:none;" onclick="doLogout()">退出</button>
+
      <!--视频标签属性必须写：autoplay muted loop playsinline-->
     <video id="bg-video" autoplay muted loop playsinline>
         <source src="bg3.mp4" type="video/mp4">
@@ -6309,6 +6550,138 @@
                 }
             });
         }
+
+        // ===================== 简易登录系统（防普通用户） =====================
+        // 默认凭据：账号 admin / 密码 lishting2026
+        // 修改方法：改下面 VALID_USER / VALID_PASS 的 base64（反转后再编码）即可
+        (function () {
+            var OLD_KEY = 'lishting_auth_v1';  // 旧 localStorage key，迁移用
+            var KEY = 'lishting_auth_v2';
+            var TTL = 4 * 60 * 60 * 1000; // 登录态有效期 4 小时（会话级）
+            // 凭据经“字符串反转 + base64”混淆，避免源码直接看到明文
+            var VALID_USER = reverse(atob('ZGp5eXNocmRiYmU='));        // -> 'admin'
+            var VALID_PASS = reverse(atob('ODc2NTQzMjFjUw=='));  // -> 'Sc12345678'
+
+            function reverse(s) { return s.split('').reverse().join(''); }
+
+            // 清掉旧版本 localStorage 残留登录态（避免旧登录态导致免登录）
+            try { localStorage.removeItem(OLD_KEY); } catch (e) {}
+
+            var overlay    = document.getElementById('loginOverlay');
+            var form       = document.getElementById('loginForm');
+            var userInput  = document.getElementById('loginUser');
+            var passInput  = document.getElementById('loginPass');
+            var btn        = document.getElementById('loginBtn');
+            var errBox     = document.getElementById('loginError');
+            var logoutBtn  = document.getElementById('logoutBtn');
+
+            var failCount = 0;
+            var lockUntil = 0;
+            var btnText = '登 录';
+
+            // 使用 sessionStorage：关闭浏览器/重新打开文件即失效
+            // 同一会话内刷新页面保持登录，避免频繁输入
+            var store = (function () {
+                try {
+                    sessionStorage.setItem('__test__', '1');
+                    sessionStorage.removeItem('__test__');
+                    return sessionStorage;
+                } catch (e) {
+                    return null; // file:// 某些情况禁用 sessionStorage，则每次都要登录
+                }
+            })();
+
+            function isLogged() {
+                try {
+                    if (!store) return false;
+                    var raw = store.getItem(KEY);
+                    if (!raw) return false;
+                    var obj = JSON.parse(raw);
+                    if (!obj || !obj.exp || obj.exp < Date.now()) {
+                        store.removeItem(KEY);
+                        return false;
+                    }
+                    return obj.u === VALID_USER; // 二次校验，防伪造
+                } catch (e) { return false; }
+            }
+
+            function showApp() {
+                if (overlay)   overlay.style.display = 'none';
+                if (logoutBtn) logoutBtn.style.display = 'block';
+            }
+            function showLogin() {
+                if (overlay)   overlay.style.display = 'flex';
+                if (logoutBtn) logoutBtn.style.display = 'none';
+                if (userInput) userInput.value = '';
+                if (passInput) passInput.value = '';
+                if (btn) { btn.disabled = false; btn.innerHTML = btnText; }
+                if (errBox) errBox.textContent = '';
+            }
+
+            function doLogin(e) {
+                e.preventDefault();
+                if (Date.now() < lockUntil) {
+                    var remain = Math.ceil((lockUntil - Date.now()) / 1000);
+                    if (errBox) errBox.textContent = '尝试次数过多，请 ' + remain + ' 秒后再试';
+                    return;
+                }
+                var u = (userInput && userInput.value ? userInput.value : '').trim();
+                var p = (passInput && passInput.value ? passInput.value : '').trim();
+                if (u === VALID_USER && p === VALID_PASS) {
+                    if (store) {
+                        try {
+                            store.setItem(KEY, JSON.stringify({
+                                u: VALID_USER,
+                                exp: Date.now() + TTL
+                            }));
+                        } catch (e) {}
+                    }
+                    if (errBox) errBox.textContent = '';
+                    if (btn) { btn.disabled = true; btn.innerHTML = '<span class="login-loading"></span>验证通过'; }
+                    setTimeout(showApp, 500);
+                } else {
+                    failCount++;
+                    if (failCount >= 5) {
+                        lockUntil = Date.now() + 30 * 1000;
+                        if (errBox) errBox.textContent = '错误次数过多，已锁定 30 秒';
+                        failCount = 0;
+                    } else {
+                        if (errBox) errBox.textContent = '账号或密码错误（还剩 ' + (5 - failCount) + ' 次）';
+                    }
+                    if (passInput) { passInput.value = ''; passInput.focus(); }
+                }
+            }
+
+            function doLogout() {
+                if (store) { try { store.removeItem(KEY); } catch (e) {} }
+                showLogin();
+                if (userInput) userInput.focus();
+            }
+            window.doLogout = doLogout;
+
+            if (form) form.addEventListener('submit', doLogin);
+            if (isLogged()) showApp(); else showLogin();
+            if (!isLogged() && userInput) setTimeout(function () { userInput.focus(); }, 100);
+
+            // 密码显示/隐藏切换
+            var passToggle = document.getElementById('passToggle');
+            var passToggleIcon = document.getElementById('passToggleIcon');
+            var EYE_OPEN  = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+            var EYE_CLOSE = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
+            if (passToggle) {
+                passToggle.addEventListener('click', function () {
+                    if (!passInput) return;
+                    if (passInput.type === 'password') {
+                        passInput.type = 'text';
+                        if (passToggleIcon) passToggleIcon.innerHTML = EYE_CLOSE;
+                    } else {
+                        passInput.type = 'password';
+                        if (passToggleIcon) passToggleIcon.innerHTML = EYE_OPEN;
+                    }
+                    passInput.focus();
+                });
+            }
+        })();
     </script>
     
     <button class="toggle-store-btn" id="toggleStoreBtn" onclick="toggleStoreSelector()" title="切换店铺选择器">✕</button>
