@@ -330,14 +330,16 @@
         }
         
         .btn-primary {
-            background: #C41E3A;
-            color: white;
+            background:transparent;
+            color: rgb(57, 3, 128);
+            border:2px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
         }
         
         .btn-primary:hover {
-            background: #8B0000;
+            background: #fdfdfd;
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(196, 30, 58, 0.3);
+            box-shadow: 0 4px 8px rgba(247, 7, 47, 0.226);
         }
         
         .btn-secondary {
@@ -815,12 +817,12 @@
             left: 20px;
             transform: translateY(-50%);
             z-index: 1000;
-            background: linear-gradient(135deg, #f1fbffd7 0%, #fcfbfc81 100%);
+            background: linear-gradient(135deg, #ffffff18 0%, #acdaf525 100%);
             border-radius: 12px;
             padding: 15px 20px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.2); 
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(1px);
             transition: all 0.3s ease;
         }
         
@@ -857,7 +859,7 @@
             bottom: 20px;
             left: 20px;
             z-index: 1001;
-            background: linear-gradient(135deg, #10a3dd31 0%, #b907b900 100%);
+            background: linear-gradient(135deg, #10a3dd22 0%, #b907b900 100%);
             color: white;
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
@@ -1966,9 +1968,199 @@
             background: rgba(255,255,255,0.3);
             border-color: white;
         }
+
+        /* 模板功能样式 */
+        .btn-template {
+            background: transparent;
+            color: rgba(20, 65, 212, 0.658);
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            border:2px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-template:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-template-secondary {
+            background: transparent;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            border:2px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-template-secondary:hover {
+            box-shadow: 0 4px 12px rgba(245, 87, 108, 0.4);
+        }
+
+        .template-save-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10001;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .template-save-modal.active {
+            display: flex;
+        }
+
+        .template-save-container {
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .template-save-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .template-save-header h3 {
+            margin: 0;
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+
+        .template-save-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .template-save-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .template-save-body {
+            padding: 25px;
+        }
+
+        .template-save-body .form-group {
+            margin-bottom: 20px;
+        }
+
+        .template-save-body label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .template-save-body input[type="text"],
+        .template-save-body textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.95em;
+        }
+
+        .template-save-body input[type="text"]:focus,
+        .template-save-body textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .template-save-footer {
+            padding: 20px 25px;
+            border-top: 2px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            background: #fafafa;
+        }
+
+        .template-upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #fafafa;
+        }
+
+        .template-upload-area:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .template-upload-area.dragover {
+            border-color: #667eea;
+            background: #e8eeff;
+        }
+
+        .template-upload-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .template-upload-text {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .template-upload-hint {
+            color: #999;
+            font-size: 0.85em;
+        }
+
+        .template-info-display {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .template-info-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .template-info-meta {
+            color: #666;
+            font-size: 0.9em;
+        }
     </style>
 </head>
 <body>
+
+    
+    
      <!--视频标签属性必须写：autoplay muted loop playsinline-->
     <video id="bg-video" autoplay muted loop playsinline>
         <source src="bg3.mp4" type="video/mp4">
@@ -2632,8 +2824,11 @@
                 
                 <div class="action-buttons">
                     <button class="btn btn-primary" onclick="showHTMLModal()">📄 生成HTML</button>
-                    <button class="btn btn-success" onclick="downloadHTML()">⬇️ 下载HTML文件</button>
-                    <button class="btn btn-secondary" onclick="loadFromPA()">🔄 从PA.html加载</button>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn-template" onclick="openSaveTemplateModal()">💾 保存为模板</button>
+                    <button class="btn-template btn-template-secondary" onclick="openLoadTemplateModal()">📂 加载模板</button>
                 </div>
             </div>
             
@@ -2662,6 +2857,66 @@
                     <span>📋</span>
                     <span id="copyButtonText">复制到剪贴板</span>
                 </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 保存模板模态框 -->
+    <div class="template-save-modal" id="saveTemplateModal">
+        <div class="template-save-container">
+            <div class="template-save-header">
+                <h3>💾 保存模板</h3>
+                <button class="template-save-close" onclick="closeSaveTemplateModal()">×</button>
+            </div>
+            <div class="template-save-body">
+                <div class="form-group">
+                    <label>模板名称</label>
+                    <input type="text" id="templateName" placeholder="输入模板名称（如：Azocek-001 标准模板）">
+                </div>
+                <div class="form-group">
+                    <label>模板描述（可选）</label>
+                    <textarea id="templateDesc" placeholder="简要描述这个模板的用途和特点..." rows="3"></textarea>
+                </div>
+                <div class="template-info-display">
+                    <div class="template-info-title">📦 将保存以下内容：</div>
+                    <div class="template-info-meta">
+                        <div>• 产品标题、主题配色</div>
+                        <div>• 产品图片列表</div>
+                        <div>• 导航栏、品类、特性、规格</div>
+                        <div>• 所有标签页内容（描述/包装/运输/支付/联系/退货/反馈）</div>
+                        <div>• 底部导航栏、品牌信息</div>
+                    </div>
+                </div>
+            </div>
+            <div class="template-save-footer">
+                <button class="btn-close-modal" onclick="closeSaveTemplateModal()">取消</button>
+                <button class="btn-copy" onclick="saveAsTemplate()">💾 保存并下载</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 加载模板模态框 -->
+    <div class="template-save-modal" id="loadTemplateModal">
+        <div class="template-save-container">
+            <div class="template-save-header" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                <h3>📂 加载模板</h3>
+                <button class="template-save-close" onclick="closeLoadTemplateModal()">×</button>
+            </div>
+            <div class="template-save-body">
+                <div class="template-upload-area" id="templateUploadArea" onclick="document.getElementById('templateFileInput').click()">
+                    <div class="template-upload-icon">📁</div>
+                    <div class="template-upload-text"><strong>点击选择</strong> 或 <strong>拖拽</strong> JSON模板文件到此处</div>
+                    <div class="template-upload-hint">支持 .json 格式的模板文件</div>
+                </div>
+                <input type="file" id="templateFileInput" accept=".json" style="display: none;" onchange="handleTemplateFileSelect(this)">
+                <div class="template-info-display" id="templateFileInfo" style="display: none;">
+                    <div class="template-info-title" id="templateFileName">-</div>
+                    <div class="template-info-meta" id="templateFileMeta">-</div>
+                </div>
+            </div>
+            <div class="template-save-footer">
+                <button class="btn-close-modal" onclick="closeLoadTemplateModal()">取消</button>
+                <button class="btn-copy" id="applyTemplateBtn" onclick="applyLoadedTemplate()" disabled>✅ 应用模板</button>
             </div>
         </div>
     </div>
@@ -4210,6 +4465,9 @@
                 loadAIConfig();
                 initThemeSelector();
                 updatePreview();
+                
+                // 初始化模板拖拽上传
+                initTemplateDragDrop();
             };
         
         function toggleStoreSelector() {
@@ -4359,8 +4617,8 @@
                             { role: 'system', content: systemPrompt },
                             { role: 'user', content: prompt }
                         ],
-                        temperature: 0.7,
-                        max_tokens: 2000
+                        temperature: 0.3,
+                        max_tokens: 4096
                     })
                 });
                 
@@ -4396,10 +4654,52 @@
                 console.log('API响应数据:', data);
                 
                 if (!data.choices || !data.choices[0] || !data.choices[0].message) {
-                    throw new Error('API响应格式异常');
+                    console.error('API响应格式异常:', data);
+                    throw new Error('API响应格式异常 - 未找到 choices[0].message');
                 }
                 
-                return data.choices[0].message.content;
+                // 处理不同格式的 content
+                let content = data.choices[0].message.content;
+                console.log('原始content:', content);
+                console.log('content类型:', typeof content);
+                console.log('content长度:', content ? content.length : 0);
+                
+                // 如果 content 是数组格式（某些新模型的响应格式）
+                if (Array.isArray(content)) {
+                    console.log('content是数组格式，提取文本...');
+                    let textContent = '';
+                    for (const item of content) {
+                        if (item.type === 'text' && item.text) {
+                            textContent += item.text;
+                        } else if (item.text) {
+                            textContent += item.text;
+                        }
+                    }
+                    content = textContent;
+                    console.log('提取后content长度:', content.length);
+                }
+                
+                // 如果 content 是 null 或空
+                if (!content || content.trim().length === 0) {
+                    console.warn('API返回了空的content, 完整响应:', data);
+                    console.warn('finish_reason:', data.choices[0].finish_reason);
+                    
+                    // 检查是否有其他字段包含内容
+                    if (data.choices[0].message.reasoning_content) {
+                        console.log('发现reasoning_content字段');
+                        // 有些模型把实际内容放在 reasoning_content 中
+                    }
+                    
+                    throw new Error('API返回了空的内容。可能原因：\n1. 模型不支持此功能\n2. prompt过长\n3. API配额不足\n\n请检查API配置或更换模型后重试。');
+                }
+                
+                // 检查 finish_reason
+                if (data.choices[0].finish_reason === 'length') {
+                    console.warn('响应被截断（finish_reason: length）');
+                    // 内容可能被截断，但仍然返回
+                }
+                
+                return content;
             } catch (error) {
                 if (error.name === 'TypeError' && error.message.includes('fetch')) {
                     throw new Error('网络连接失败 - 请检查网络连接和防火墙设置');
@@ -4419,7 +4719,7 @@
                 specs: `你是一个产品规格专家，擅长用${language}整理和呈现产品规格信息，确保信息准确、完整、易读。`,
                 translation: `你是一个专业翻译，擅长将中文内容翻译成英文，确保翻译准确、自然、符合eBay的表达习惯。`,
                 productInfo: `你是一个eBay产品信息生成专家，擅长用${language}基于产品基本信息生成完整的eBay产品资料。
-                
+
 请根据用户提供的产品信息，生成以下内容：
 
 1. **产品描述**：使用五点描述法，每点突出一个核心卖点或特点，使用HTML格式，包含适当的标题和列表。
@@ -4431,21 +4731,23 @@
 - 包含产品特点、优势、使用场景
 - 使用HTML格式，如<h3>标题</h3>、<ul><li>列表</li></ul>等
 - 语言专业、吸引人、符合eBay规范
-- 英文版
+- ${language === '英文' ? '英文版' : language === '中文' ? '中文版' : '中英双语'}
 
 包装内容要求：
 - 清晰列出所有包装物品
 - 使用HTML格式，如<ul><li>物品</li></ul>
 - 确保信息完整准确
-- 英文版
+- ${language === '英文' ? '英文版' : language === '中文' ? '中文版' : '中英双语'}
 
 产品规格要求：
 - 生成JSON数组格式：[{"label": "规格名称", "value": "规格值"}]
 - 包含所有重要技术参数
 - 规格标签清晰，值准确
-- 英文版
+- ${language === '英文' ? '英文版' : language === '中文' ? '中文版' : '中英双语'}
 
-请以JSON格式返回，包含以下字段：
+重要：请直接返回JSON格式，不要添加任何markdown代码块标记或解释性文字。
+
+返回格式：
 {
   "description": "产品描述（HTML格式）",
   "inTheBox": "包装内容（HTML格式）",
@@ -4587,38 +4889,407 @@
             try {
                 let cleanResponse = aiResponse.trim();
                 
-                const jsonMatch = cleanResponse.match(/\{[\s\S]*\}/);
-                if (jsonMatch) {
-                    cleanResponse = jsonMatch[0];
+                console.log('AI响应原始长度:', cleanResponse.length);
+                console.log('AI响应前200字符:', cleanResponse.substring(0, 200));
+                
+                // 如果响应太短，直接提示
+                if (cleanResponse.length < 10) {
+                    throw new Error('AI响应过短，可能被截断。请重试或检查max_tokens设置。');
                 }
                 
-                const data = JSON.parse(cleanResponse);
-                
-                if (data.description) {
-                    document.getElementById('descEditor').innerHTML = data.description;
-                    console.log('✅ 产品描述已填充');
+                // 步骤1：尝试提取 markdown 代码块中的 JSON
+                const codeBlockMatch = cleanResponse.match(/```(?:json)?\s*([\s\S]*?)```/i);
+                if (codeBlockMatch) {
+                    cleanResponse = codeBlockMatch[1].trim();
+                    console.log('从代码块中提取JSON, 新长度:', cleanResponse.length);
                 }
                 
-                if (data.inTheBox) {
-                    document.getElementById('boxEditor').innerHTML = data.inTheBox;
-                    console.log('✅ 包装内容已填充');
+                // 步骤2：寻找 JSON 对象的起止位置
+                const jsonStart = cleanResponse.indexOf('{');
+                const jsonEnd = cleanResponse.lastIndexOf('}');
+                
+                console.log('JSON起止位置:', jsonStart, '-', jsonEnd);
+                
+                if (jsonStart !== -1 && jsonEnd !== -1 && jsonEnd > jsonStart) {
+                    cleanResponse = cleanResponse.substring(jsonStart, jsonEnd + 1);
+                    console.log('提取后的JSON长度:', cleanResponse.length);
+                } else if (jsonStart !== -1) {
+                    // 只有开始没有结束，说明 JSON 被截断了
+                    console.warn('检测到JSON被截断（有{无}），尝试修复...');
                 }
                 
-                if (data.specs && Array.isArray(data.specs)) {
-                    specItems = data.specs.map(spec => ({
-                        label: spec.label || '规格',
-                        value: spec.value || ''
-                    }));
-                    renderSpecs();
-                    console.log('✅ 产品规格已填充，共', specItems.length, '条');
+                // 步骤3：尝试解析
+                let data = null;
+                let lastError = null;
+                
+                try {
+                    data = JSON.parse(cleanResponse);
+                    console.log('直接解析成功');
+                } catch (parseError) {
+                    lastError = parseError;
+                    console.warn('首次解析失败:', parseError.message);
+                    console.log('尝试修复的JSON:', cleanResponse.substring(Math.max(0, cleanResponse.length - 100)));
+                    
+                    // 尝试多种修复策略
+                    data = tryFixAndParseJSON(cleanResponse);
+                    
+                    if (!data) {
+                        // 如果修复失败，尝试手动提取字段
+                        console.log('自动修复失败，尝试手动提取字段...');
+                        data = extractFieldsManually(cleanResponse);
+                    }
+                    
+                    if (!data) {
+                        // 所有方法都失败
+                        console.error('所有解析方法都失败了');
+                        console.error('最后尝试解析的JSON:', cleanResponse);
+                        throw lastError; // 重新抛出原始错误
+                    } else {
+                        console.log('✅ 手动提取字段成功');
+                    }
                 }
                 
-                updatePreview();
+                // 步骤4：验证并填充数据
+                if (data && typeof data === 'object') {
+                    let filledCount = 0;
+                    
+                    if (data.description) {
+                        document.getElementById('descEditor').innerHTML = data.description;
+                        console.log('✅ 产品描述已填充');
+                        filledCount++;
+                    }
+                    
+                    if (data.inTheBox) {
+                        document.getElementById('boxEditor').innerHTML = data.inTheBox;
+                        console.log('✅ 包装内容已填充');
+                        filledCount++;
+                    }
+                    
+                    if (data.specs && Array.isArray(data.specs)) {
+                        specItems = data.specs.map(spec => ({
+                            label: spec.label || '规格',
+                            value: spec.value || ''
+                        }));
+                        renderSpecs();
+                        console.log('✅ 产品规格已填充，共', specItems.length, '条');
+                        filledCount++;
+                    }
+                    
+                    if (filledCount === 0) {
+                        throw new Error('AI响应中未找到有效字段（description/inTheBox/specs）');
+                    }
+                    
+                    updatePreview();
+                    console.log('总共填充了', filledCount, '个字段');
+                    
+                } else {
+                    throw new Error('解析结果不是有效的对象');
+                }
                 
             } catch (error) {
                 console.error('解析AI响应失败:', error);
-                console.log('原始响应:', aiResponse);
-                alert('解析AI响应失败，请检查AI返回的格式是否正确。\n\n错误信息: ' + error.message);
+                console.error('原始响应:', aiResponse);
+                
+                // 构建更详细的错误信息
+                let errorMsg = error.message;
+                if (errorMsg.includes('Unexpected end of JSON')) {
+                    errorMsg = 'JSON被截断（AI响应不完整）。建议：\n1. 增加max_tokens参数\n2. 简化产品描述\n3. 重试一次';
+                } else if (errorMsg.includes('Unterminated string')) {
+                    errorMsg = 'JSON字符串未正确闭合。AI生成的内容中可能有特殊字符。';
+                }
+                
+                alert('解析AI响应失败：\n\n' + errorMsg + '\n\n请打开浏览器控制台(F12)查看详细日志。');
+            }
+        }
+        
+        // 尝试修复被截断的 JSON 并解析
+        function tryFixAndParseJSON(jsonStr) {
+            console.log('开始尝试修复JSON, 原始长度:', jsonStr.length);
+            
+            // 方法1: 简单补全括号
+            try {
+                let fixed = jsonStr;
+                // 检查引号是否闭合
+                let quoteCount = (fixed.match(/"/g) || []).length;
+                if (quoteCount % 2 !== 0) {
+                    fixed += '"';
+                    console.log('补全了缺失的引号');
+                }
+                // 补全括号
+                let openBraces = (fixed.match(/\{/g) || []).length;
+                let closeBraces = (fixed.match(/\}/g) || []).length;
+                let openBrackets = (fixed.match(/\[/g) || []).length;
+                let closeBrackets = (fixed.match(/\]/g) || []).length;
+                if (openBraces > closeBraces) fixed += '}'.repeat(openBraces - closeBraces);
+                if (openBrackets > closeBrackets) fixed += ']'.repeat(openBrackets - closeBrackets);
+                
+                const result = JSON.parse(fixed);
+                console.log('✅ 方法1成功：简单补全');
+                return result;
+            } catch (e) {
+                console.log('方法1失败:', e.message);
+            }
+            
+            // 方法2: 从后向前截断，找到最后一个完整的键值对
+            // 思路：移除最后一个可能被截断的字段
+            try {
+                // 找到最后一个完整的 }, 或 ] 作为截断点
+                let lastValidEnd = -1;
+                
+                // 查找所有可能的截断点
+                for (let i = jsonStr.length - 1; i >= 0; i--) {
+                    if (jsonStr[i] === '}' || jsonStr[i] === ']') {
+                        // 尝试从这个位置截断并修复
+                        let truncated = jsonStr.substring(0, i + 1);
+                        
+                        // 补全引号和括号
+                        let quoteCount = (truncated.match(/"/g) || []).length;
+                        if (quoteCount % 2 !== 0) truncated += '"';
+                        
+                        let openBraces = (truncated.match(/\{/g) || []).length;
+                        let closeBraces = (truncated.match(/\}/g) || []).length;
+                        let openBrackets = (truncated.match(/\[/g) || []).length;
+                        let closeBrackets = (truncated.match(/\]/g) || []).length;
+                        if (openBraces > closeBraces) truncated += '}'.repeat(openBraces - closeBraces);
+                        if (openBrackets > closeBrackets) truncated += ']'.repeat(openBrackets - closeBrackets);
+                        
+                        try {
+                            const result = JSON.parse(truncated);
+                            console.log('✅ 方法2成功：截断到位置', i);
+                            return result;
+                        } catch (e) {
+                            // 继续尝试
+                        }
+                    }
+                }
+            } catch (e) {
+                console.log('方法2失败:', e.message);
+            }
+            
+            // 方法3: 逐字符截断 + 智能修复
+            try {
+                // 限制尝试次数，避免性能问题
+                let attempts = 0;
+                const maxAttempts = Math.min(500, jsonStr.length);
+                
+                for (let i = jsonStr.length - 1; i > 0 && attempts < maxAttempts; i -= 3) {
+                    attempts++;
+                    let truncated = jsonStr.substring(0, i);
+                    
+                    // 快速检查：确保不以特殊字符结尾
+                    const lastChar = truncated.trim().slice(-1);
+                    if (lastChar === ',' || lastChar === ':' || lastChar === '{' || lastChar === '[') {
+                        continue;
+                    }
+                    
+                    // 补全引号和括号
+                    let quoteCount = (truncated.match(/"/g) || []).length;
+                    if (quoteCount % 2 !== 0) truncated += '"';
+                    
+                    let openBraces = (truncated.match(/\{/g) || []).length;
+                    let closeBraces = (truncated.match(/\}/g) || []).length;
+                    let openBrackets = (truncated.match(/\[/g) || []).length;
+                    let closeBrackets = (truncated.match(/\]/g) || []).length;
+                    if (openBraces > closeBraces) truncated += '}'.repeat(openBraces - closeBraces);
+                    if (openBrackets > closeBrackets) truncated += ']'.repeat(openBrackets - closeBrackets);
+                    
+                    try {
+                        const result = JSON.parse(truncated);
+                        console.log('✅ 方法3成功：截断到位置', i, '尝试次数:', attempts);
+                        return result;
+                    } catch (e) {
+                        // 继续尝试
+                    }
+                }
+            } catch (e) {
+                console.log('方法3失败:', e.message);
+            }
+            
+            console.log('所有修复方法都失败了');
+            return null;
+        }
+        
+        // 手动从文本中提取字段（备用方案）
+        function extractFieldsManually(text) {
+            try {
+                const result = {};
+                console.log('开始手动提取字段，文本长度:', text.length);
+                
+                // 使用更健壮的方法提取字符串值
+                // 思路：找到 "key": "value" 的模式，value 可以跨越多行
+                
+                // 提取 description 字段
+                result.description = extractStringField(text, 'description');
+                if (result.description !== null) {
+                    console.log('✅ 提取到 description');
+                }
+                
+                // 提取 inTheBox 字段
+                result.inTheBox = extractStringField(text, 'inTheBox');
+                if (result.inTheBox !== null) {
+                    console.log('✅ 提取到 inTheBox');
+                }
+                
+                // 提取 specs 数组
+                result.specs = extractArrayField(text, 'specs');
+                if (result.specs !== null && result.specs.length > 0) {
+                    console.log('✅ 提取到 specs, 数量:', result.specs.length);
+                }
+                
+                // 至少找到一个字段才算成功
+                if (result.description || result.inTheBox || (result.specs && result.specs.length > 0)) {
+                    console.log('手动提取字段成功:', Object.keys(result).filter(k => result[k] !== null));
+                    return result;
+                }
+                
+                console.log('手动提取字段失败：未找到任何有效字段');
+                return null;
+            } catch (e) {
+                console.error('手动提取字段失败:', e);
+                return null;
+            }
+        }
+        
+        // 从 JSON 文本中提取字符串字段值
+        function extractStringField(text, fieldName) {
+            // 模式: "fieldName": "value..."
+            // value 可能包含转义的引号 \"
+            const pattern = new RegExp('"' + fieldName + '"\\s*:\\s*"', 'g');
+            const match = pattern.exec(text);
+            
+            if (!match) return null;
+            
+            // 从匹配位置开始，提取字符串值
+            const startPos = match.index + match[0].length;
+            let value = '';
+            let i = startPos;
+            let escaped = false;
+            
+            while (i < text.length) {
+                const char = text[i];
+                
+                if (escaped) {
+                    // 转义字符
+                    value += char;
+                    escaped = false;
+                } else if (char === '\\') {
+                    escaped = true;
+                } else if (char === '"') {
+                    // 找到结束的引号
+                    // 处理转义字符
+                    value = value.replace(/\\"/g, '"').replace(/\\n/g, '\n').replace(/\\\//g, '/');
+                    return value;
+                } else {
+                    value += char;
+                }
+                
+                i++;
+            }
+            
+            // 如果没找到结束引号，返回已提取的部分
+            // 这可能是因为 JSON 被截断了
+            if (value.length > 0) {
+                console.log('  字段 ' + fieldName + ' 可能被截断，已提取部分内容');
+                value = value.replace(/\\"/g, '"').replace(/\\n/g, '\n').replace(/\\\//g, '/');
+                return value;
+            }
+            
+            return null;
+        }
+        
+        // 从 JSON 文本中提取数组字段值
+        function extractArrayField(text, fieldName) {
+            const pattern = new RegExp('"' + fieldName + '"\\s*:\\s*\\[', 'g');
+            const match = pattern.exec(text);
+            
+            if (!match) return null;
+            
+            const startPos = match.index + match[0].length;
+            let arrayContent = '';
+            let braceCount = 0;
+            let bracketCount = 1; // 已经有一个 [
+            let i = startPos;
+            let inString = false;
+            let stringEscaped = false;
+            
+            // 找到数组的结束位置
+            while (i < text.length) {
+                const char = text[i];
+                
+                if (inString) {
+                    if (stringEscaped) {
+                        stringEscaped = false;
+                    } else if (char === '\\') {
+                        stringEscaped = true;
+                    } else if (char === '"') {
+                        inString = false;
+                    }
+                } else {
+                    if (char === '"') {
+                        inString = true;
+                    } else if (char === '[') {
+                        bracketCount++;
+                    } else if (char === ']') {
+                        bracketCount--;
+                        if (bracketCount === 0) {
+                            // 数组结束
+                            break;
+                        }
+                    } else if (char === '{') {
+                        braceCount++;
+                    } else if (char === '}') {
+                        braceCount--;
+                    }
+                }
+                
+                arrayContent += char;
+                i++;
+            }
+            
+            // 尝试解析数组
+            try {
+                const arrayStr = '[' + arrayContent + ']';
+                return JSON.parse(arrayStr);
+            } catch (e) {
+                // 数组可能被截断，尝试手动提取对象
+                console.log('  数组解析失败，尝试手动提取:', e.message);
+                
+                // 手动提取 { ... } 对象
+                const objects = [];
+                let currentObj = '';
+                let objStart = false;
+                
+                for (let j = 0; j < arrayContent.length; j++) {
+                    const c = arrayContent[j];
+                    
+                    if (c === '{') {
+                        objStart = true;
+                        currentObj = c;
+                    } else if (c === '}') {
+                        currentObj += c;
+                        try {
+                            objects.push(JSON.parse(currentObj));
+                        } catch (parseErr) {
+                            // 尝试修复后再解析
+                            try {
+                                // 补全可能缺失的引号
+                                let fixed = currentObj;
+                                const qc = (fixed.match(/"/g) || []).length;
+                                if (qc % 2 !== 0) fixed += '"';
+                                fixed += '}';
+                                objects.push(JSON.parse(fixed));
+                            } catch (e2) {
+                                // 忽略无法解析的对象
+                            }
+                        }
+                        currentObj = '';
+                        objStart = false;
+                    } else if (objStart) {
+                        currentObj += c;
+                    }
+                }
+                
+                return objects.length > 0 ? objects : null;
             }
         }
         
@@ -4724,16 +5395,32 @@
                 .replace(/`(.*?)`/g, '<code>$1</code>');
         }
         
-        document.getElementById('aiChatInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                sendAIMessage();
-            }
-        });
-
-        let freeChatMessages = [];
-        let freeChatUseDeepThinking = false;
-        let freeChatDepthLevel = 'standard';
+        // 修复：使用 var 确保变量提升，避免 TDZ 问题
+        var freeChatMessages = [];
+        var freeChatUseDeepThinking = false;
+        var freeChatDepthLevel = 'standard';
+        
+        // 安全绑定事件（aiChatInput 可能不存在于当前页面）
+        const aiChatInput = document.getElementById('aiChatInput');
+        if (aiChatInput) {
+            aiChatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendAIMessage();
+                }
+            });
+        }
+        
+        // 绑定自由对话输入框的回车事件
+        const freeChatInput = document.getElementById('freeChatInput');
+        if (freeChatInput) {
+            freeChatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendFreeChatMessage();
+                }
+            });
+        }
 
         function openFreeChat() {
             document.getElementById('freeChatModal').classList.add('active');
@@ -4784,30 +5471,36 @@
 
             const endpoint = aiConfig.apiUrl || 'https://api.deepseek.com/v1/chat/completions';
             
+            // 根据用户选择决定模型
             let model = aiConfig.model;
             if (freeChatUseDeepThinking) {
                 model = 'deepseek-v4-pro';
             }
 
-            const effortMap = {
-                standard: 'high',
-                deep: 'high',
-                expert: 'max'
-            };
-
             const requestBody = {
                 model: model,
                 messages: messages,
-                max_tokens: 3000,
-                stream: true
+                max_tokens: 4096,
+                stream: true,
+                temperature: 0.7
             };
 
+            // 只有在使用深度思考模式时才添加额外参数
             if (freeChatUseDeepThinking) {
+                const effortMap = {
+                    standard: 'high',
+                    deep: 'high',
+                    expert: 'max'
+                };
                 requestBody.reasoning_effort = effortMap[freeChatDepthLevel] || 'high';
-                requestBody.thinking = { type: 'enabled' };
-            } else {
-                requestBody.temperature = 0.7;
             }
+
+            console.log('自由对话API请求:', {
+                model: model,
+                messagesCount: messages.length,
+                useDeepThinking: freeChatUseDeepThinking,
+                stream: true
+            });
 
             try {
                 const response = await fetch(endpoint, {
@@ -4819,34 +5512,28 @@
                     body: JSON.stringify(requestBody)
                 });
 
+                console.log('API响应状态:', response.status, response.statusText);
+
                 if (!response.ok) {
-                    const errorData = await response.json().catch(() => ({}));
-                    const statusCode = response.status;
-                    let errorMessage = `API调用失败 (状态码: ${statusCode})`;
-                    
-                    if (errorData.error && errorData.error.message) {
-                        errorMessage += ` - ${errorData.error.message}`;
+                    let errorMessage = `API调用失败 (状态码: ${response.status})`;
+                    try {
+                        const errorData = await response.json();
+                        console.error('API错误响应:', errorData);
+                        if (errorData.error && errorData.error.message) {
+                            errorMessage += ` - ${errorData.error.message}`;
+                        }
+                    } catch (e) {
+                        // 忽略解析错误
                     }
-                    
-                    if (statusCode === 401) {
-                        errorMessage += ' (未授权 - 请检查API密钥)';
-                    } else if (statusCode === 403) {
-                        errorMessage += ' (禁止访问 - 权限不足)';
-                    } else if (statusCode === 429) {
-                        errorMessage += ' (请求过多 - 请稍后重试)';
-                    } else if (statusCode === 500) {
-                        errorMessage += ' (服务器错误 - 请稍后重试)';
-                    } else if (statusCode === 503) {
-                        errorMessage += ' (服务不可用 - DeepSeek API暂时不可用)';
-                    }
-                    
                     throw new Error(errorMessage);
                 }
 
+                // 检查是否支持流式响应
                 if (!response.body) {
+                    console.warn('不支持流式响应，使用一次性响应模式');
                     const data = await response.json();
                     if (!data.choices || !data.choices[0] || !data.choices[0].message) {
-                        throw new Error('API响应格式异常');
+                        throw new Error('API响应格式异常 - 未找到有效内容');
                     }
                     const message = data.choices[0].message;
                     if (onChunk && message.content) {
@@ -4862,6 +5549,7 @@
                     };
                 }
                 
+                // 处理流式响应
                 const reader = response.body.getReader();
                 const decoder = new TextDecoder('utf-8');
                 
@@ -4869,22 +5557,25 @@
                 let fullReasoning = '';
                 let hasToolCalls = false;
                 let receivedData = false;
+                let chunkCount = 0;
 
                 try {
                     while (true) {
                         const { done, value } = await reader.read();
                         
                         if (done) {
+                            console.log('流读取完成，共处理', chunkCount, '个数据块');
                             break;
                         }
                         
+                        chunkCount++;
                         const chunkStr = decoder.decode(value, { stream: true });
                         const lines = chunkStr.split('\n');
                         
                         for (const line of lines) {
                             if (line.startsWith('data: ')) {
                                 receivedData = true;
-                                const dataStr = line.slice(6);
+                                const dataStr = line.slice(6).trim();
                                 if (dataStr === '[DONE]') {
                                     continue;
                                 }
@@ -4913,17 +5604,25 @@
                                         }
                                     }
                                 } catch (e) {
-                                    console.warn('JSON parse error:', e, dataStr);
+                                    console.warn('SSE数据解析失败:', e.message);
                                 }
                             }
                         }
                     }
                 } catch (streamError) {
-                    console.error('Stream read error:', streamError);
+                    console.error('流式读取错误:', streamError);
+                    // 如果已经接收到一些数据，继续处理
                 }
                 
+                console.log('自由对话完成:', {
+                    contentLength: fullContent.length,
+                    reasoningLength: fullReasoning.length,
+                    receivedData: receivedData,
+                    chunkCount: chunkCount
+                });
+
                 if (!receivedData && !fullContent) {
-                    throw new Error('未接收到任何数据，请检查网络连接');
+                    throw new Error('未接收到任何数据。可能原因：\n1. 模型名称不正确\n2. API端点不支持此功能\n3. 网络连接问题');
                 }
                 
                 return {
@@ -4932,7 +5631,7 @@
                     tool_calls: hasToolCalls ? null : null
                 };
             } catch (error) {
-                console.error('API call error:', error);
+                console.error('API调用失败:', error);
                 if (error.name === 'TypeError' && error.message.includes('fetch')) {
                     throw new Error('网络连接失败 - 请检查网络连接和防火墙设置');
                 }
@@ -4941,48 +5640,47 @@
         }
 
         async function sendFreeChatMessage() {
+            console.log('sendFreeChatMessage 被调用');
+            
             const input = document.getElementById('freeChatInput');
             const message = input.value.trim();
             
+            console.log('消息内容:', message ? message.substring(0, 50) + '...' : '(空)');
+            console.log('API Key:', aiConfig.apiKey ? '已配置' : '未配置');
+            
             if (!message) {
-                alert('请输入消息内容');
+                showFreeChatError('请输入消息内容');
+                input.focus();
                 return;
             }
             
             if (!aiConfig.apiKey) {
-                alert('请先配置API密钥');
+                showFreeChatError('请先配置 API 密钥！<br><br>请点击页面上的"AI设置"按钮，输入您的 API 密钥。');
                 return;
             }
             
-            freeChatMessages.push({ role: 'user', content: message });
-            addFreeChatUserMessage(message);
-            input.value = '';
-            
-            const existingTyping = document.querySelector('.free-chat-message-typing');
-            if (existingTyping) {
-                existingTyping.closest('.free-chat-message').remove();
-            }
-            
-            const messagesContainer = document.getElementById('freeChatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'free-chat-message free-chat-message-ai';
-            messageDiv.innerHTML = `
-                <div class="free-chat-message-content">
-                    <div class="free-chat-thinking" id="freeChatThinking-${Date.now()}"></div>
-                    <p id="freeChatContent-${Date.now()}"></p>
-                </div>
-            `;
-            messagesContainer.appendChild(messageDiv);
-            scrollFreeChatToBottom();
-            
-            const thinkingElement = messageDiv.querySelector('.free-chat-thinking');
-            const contentElement = messageDiv.querySelector('p');
-            
-            let fullContent = '';
-            let fullReasoning = '';
-            
             try {
-                contentElement.textContent = '正在思考...';
+                freeChatMessages.push({ role: 'user', content: message });
+                addFreeChatUserMessage(message);
+                input.value = '';
+                
+                const messagesContainer = document.getElementById('freeChatMessages');
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'free-chat-message free-chat-message-ai';
+                const msgId = 'freeChatMsg-' + Date.now();
+                messageDiv.id = msgId;
+                messageDiv.innerHTML = `
+                    <div class="free-chat-message-content">
+                        <div class="free-chat-thinking" id="freeChatThinking-${Date.now()}"></div>
+                        <p id="freeChatContent-${Date.now()}">⏳ 正在发送...</p>
+                    </div>
+                `;
+                messagesContainer.appendChild(messageDiv);
+                scrollFreeChatToBottom();
+                
+                const contentElement = messageDiv.querySelector('p');
+                
+                contentElement.textContent = '🤔 正在思考中...';
                 
                 const onChunk = (chunk) => {
                     if (chunk.type === 'content') {
@@ -4991,19 +5689,29 @@
                         contentElement.textContent = fullContent;
                     } else if (chunk.type === 'reasoning') {
                         fullReasoning += chunk.content;
-                        thinkingElement.innerHTML = `
-                            <div class="free-chat-thinking-title">🧠 思考过程</div>
-                            <div class="free-chat-thinking-content">${formatAIResponse(fullReasoning)}</div>
-                        `;
-                        thinkingElement.classList.add('active');
+                        const thinkingElement = messageDiv.querySelector('.free-chat-thinking');
+                        if (thinkingElement) {
+                            thinkingElement.innerHTML = `
+                                <div class="free-chat-thinking-title">🧠 思考过程</div>
+                                <div class="free-chat-thinking-content">${formatAIResponse(fullReasoning)}</div>
+                            `;
+                            thinkingElement.classList.add('active');
+                        }
                     }
                     scrollFreeChatToBottom();
                 };
                 
+                let fullContent = '';
+                let fullReasoning = '';
+                
+                contentElement.textContent = '📡 正在连接 AI...';
+                
+                console.log('开始调用 API...');
                 const response = await callDeepSeekFreeChatAPI(freeChatMessages, onChunk);
+                console.log('API 响应:', response);
                 
                 if (!response.content && !response.reasoning) {
-                    contentElement.textContent = '抱歉，AI没有返回任何内容';
+                    contentElement.textContent = '抱歉，AI没有返回任何内容，请重试';
                     return;
                 }
                 
@@ -5025,8 +5733,43 @@
                 contentElement.innerHTML = formatAIResponse(response.content);
             } catch (error) {
                 console.error('Free chat error:', error);
-                contentElement.innerHTML = `抱歉，发生错误：${escapeHtml(error.message)}`;
+                
+                // 移除可能已添加的空消息
+                let errorMessage = error.message;
+                let suggestion = '';
+                
+                if (errorMessage.includes('请先配置API密钥')) {
+                    suggestion = '<br><br>💡 请先在 AI 设置中配置 API 密钥';
+                } else if (errorMessage.includes('401')) {
+                    suggestion = '<br><br>💡 API 密钥无效或已过期，请重新配置';
+                } else if (errorMessage.includes('403')) {
+                    suggestion = '<br><br>💡 API 没有访问权限，请检查账户余额和权限';
+                } else if (errorMessage.includes('429')) {
+                    suggestion = '<br><br>💡 请求过于频繁，请稍后重试';
+                } else if (errorMessage.includes('网络连接')) {
+                    suggestion = '<br><br>💡 请检查网络连接是否正常';
+                } else if (errorMessage.includes('模型名称') || errorMessage.includes('未接收到任何数据')) {
+                    suggestion = '<br><br>💡 可能是模型不支持此功能，请尝试其他模型';
+                }
+                
+                showFreeChatError(`发送失败：${escapeHtml(errorMessage)}${suggestion}`);
             }
+        }
+        
+        // 在自由对话区域显示错误提示
+        function showFreeChatError(message) {
+            const messagesContainer = document.getElementById('freeChatMessages');
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'free-chat-message free-chat-message-ai';
+            errorDiv.innerHTML = `
+                <div class="free-chat-message-content">
+                    <div style="color: #dc3545; padding: 12px; background: #f8d7da; border-radius: 8px; border-left: 4px solid #dc3545;">
+                        ❌ ${message}
+                    </div>
+                </div>
+            `;
+            messagesContainer.appendChild(errorDiv);
+            scrollFreeChatToBottom();
         }
 
         function addFreeChatUserMessage(message) {
@@ -5090,12 +5833,482 @@
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
-        document.getElementById('freeChatInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                sendFreeChatMessage();
+        // ============ 模板功能 ============
+        
+        // 存储当前加载的模板数据（使用 var 确保变量提升，避免 TDZ 问题）
+        var currentLoadedTemplate = null;
+        
+        // 打开保存模板模态框
+        function openSaveTemplateModal() {
+            const modal = document.getElementById('saveTemplateModal');
+            modal.classList.add('active');
+            document.getElementById('templateName').value = '';
+            document.getElementById('templateDesc').value = '';
+            setTimeout(() => document.getElementById('templateName').focus(), 100);
+        }
+        
+        // 关闭保存模板模态框
+        function closeSaveTemplateModal() {
+            document.getElementById('saveTemplateModal').classList.remove('active');
+        }
+        
+        // 收集当前所有编辑器数据并保存为模板
+        function saveAsTemplate() {
+            const templateName = document.getElementById('templateName').value.trim();
+            if (!templateName) {
+                alert('请输入模板名称！');
+                document.getElementById('templateName').focus();
+                return;
             }
-        });
+            
+            const templateDesc = document.getElementById('templateDesc').value.trim();
+            const theme = getCurrentThemeColors();
+            
+            // 收集所有数据
+            const templateData = {
+                version: '1.0',
+                name: templateName,
+                description: templateDesc,
+                createdAt: new Date().toISOString(),
+                data: {
+                    // 主题配色
+                    theme: {
+                        key: currentTheme,
+                        colors: {
+                            primary: theme.primary,
+                            secondary: theme.secondary,
+                            text: theme.text,
+                            bg: theme.bg,
+                            border: theme.border
+                        }
+                    },
+                    // 产品标题
+                    productTitle: document.getElementById('productTitle').value,
+                    // 图片列表
+                    images: productImages.map(img => ({
+                        src: img.src,
+                        alt: img.alt
+                    })),
+                    // 导航栏
+                    topNav: JSON.parse(JSON.stringify(topNavItems)),
+                    // 品类
+                    categories: JSON.parse(JSON.stringify(categoryItems)),
+                    // 特性
+                    features: JSON.parse(JSON.stringify(featureItems)),
+                    // 规格
+                    specs: JSON.parse(JSON.stringify(specItems)),
+                    // 标签页内容
+                    tabContent: {
+                        description: getEditorContent('descEditor'),
+                        inthebox: getEditorContent('boxEditor'),
+                        shipping: getEditorContent('shippingEditor'),
+                        payment: getEditorContent('paymentEditor'),
+                        contact: getEditorContent('contactEditor'),
+                        returns: getEditorContent('returnsEditor'),
+                        feedback: getEditorContent('feedbackEditor')
+                    },
+                    // 标签数据
+                    tags: JSON.parse(JSON.stringify(tagsData)),
+                    // 底部导航栏
+                    footerCols: JSON.parse(JSON.stringify(footerCols)),
+                    // 品牌信息
+                    brand: {
+                        name: document.getElementById('brandName').value,
+                        slogan: document.getElementById('brandSlogan').value,
+                        paymentIcons: document.getElementById('paymentIcons').value,
+                        copyright: document.getElementById('copyrightText').value
+                    }
+                }
+            };
+            
+            // 生成 JSON 文件并下载
+            const jsonString = JSON.stringify(templateData, null, 2);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `template_${templateName.replace(/[^\w\u4e00-\u9fa5-]/g, '_')}_${Date.now()}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            closeSaveTemplateModal();
+            alert(`✅ 模板 "${templateName}" 已保存！\n\n文件已下载到本地，下次可通过"加载模板"功能导入。`);
+        }
+        
+        // 打开加载模板模态框
+        function openLoadTemplateModal() {
+            const modal = document.getElementById('loadTemplateModal');
+            modal.classList.add('active');
+            document.getElementById('templateFileInput').value = '';
+            document.getElementById('templateFileInfo').style.display = 'none';
+            document.getElementById('applyTemplateBtn').disabled = true;
+            currentLoadedTemplate = null;
+        }
+        
+        // 关闭加载模板模态框
+        function closeLoadTemplateModal() {
+            document.getElementById('loadTemplateModal').classList.remove('active');
+        }
+        
+        // 处理文件选择
+        function handleTemplateFileSelect(input) {
+            const file = input.files[0];
+            if (file) {
+                readTemplateFile(file);
+            }
+        }
+        
+        // 读取模板文件
+        function readTemplateFile(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    let content = e.target.result;
+                    // 去除 BOM 头
+                    if (content.charCodeAt(0) === 0xFEFF) {
+                        content = content.slice(1);
+                    }
+                    // 检查是否是空文件
+                    if (!content || !content.trim()) {
+                        alert('❌ 文件为空！\n\n请确保上传的是有效的模板文件。');
+                        return;
+                    }
+                    // 检查是否是 JSON 格式
+                    if (!content.trim().startsWith('{')) {
+                        alert('❌ 无效的模板文件！\n\n文件内容不是有效的 JSON 格式。\n\n请确保使用通过"保存为模板"功能生成的 .json 文件。');
+                        return;
+                    }
+                    
+                    const templateData = JSON.parse(content);
+                    validateAndShowTemplateInfo(templateData, file.name);
+                } catch (error) {
+                    console.error('模板解析失败:', error);
+                    alert('❌ JSON 解析失败！\n\n错误信息: ' + error.message + '\n\n请确保文件是有效的 JSON 模板文件。');
+                }
+            };
+            reader.onerror = function() {
+                alert('❌ 读取文件失败，请重试。');
+            };
+            reader.readAsText(file, 'UTF-8');
+        }
+        
+        // 验证模板并显示信息
+        function validateAndShowTemplateInfo(templateData, fileName) {
+            // 检查是否是旧格式模板（lishting-template.json 格式）
+            if (templateData.tabContent && !templateData.data) {
+                // 旧格式模板，转换为新格式
+                const convertedData = convertOldFormatTemplate(templateData);
+                if (convertedData) {
+                    showTemplateInfo(convertedData, fileName, '（旧格式已自动转换）');
+                    return;
+                }
+            }
+            
+            // 验证新格式基本结构
+            if (!templateData.version || !templateData.data) {
+                alert('❌ 模板文件结构不完整！\n\n这可能不是一个有效的模板文件。\n\n' +
+                      '需要包含 version 和 data 字段。\n\n' +
+                      '当前文件包含: ' + Object.keys(templateData).join(', '));
+                return;
+            }
+            
+            if (!templateData.data.theme || !templateData.data.tabContent) {
+                alert('❌ 模板文件缺少必要数据！\n\n' +
+                      '模板需要包含主题配色和标签页内容。\n\n' +
+                      '当前 data 包含: ' + Object.keys(templateData.data).join(', '));
+                return;
+            }
+            
+            // 显示模板信息
+            showTemplateInfo(templateData, fileName, '');
+        }
+        
+        // 显示模板信息（公共方法）
+        function showTemplateInfo(templateData, fileName, extraInfo) {
+            currentLoadedTemplate = templateData;
+            const infoDiv = document.getElementById('templateFileInfo');
+            infoDiv.style.display = 'block';
+            
+            document.getElementById('templateFileName').textContent = 
+                `📄 ${templateData.name || fileName} ${extraInfo || ''}`;
+            
+            const data = templateData.data;
+            const imageCount = data.images ? data.images.length : 0;
+            const specCount = data.specs ? data.specs.length : 0;
+            const footerCount = data.footerCols ? data.footerCols.length : 0;
+            
+            let metaHtml = '';
+            if (templateData.version) {
+                metaHtml += `<div>📝 版本: ${templateData.version}${templateData.createdAt ? ' | 创建时间: ' + new Date(templateData.createdAt).toLocaleString('zh-CN') : ''}</div>`;
+            }
+            metaHtml += `<div>🖼️ 图片: ${imageCount} 张 | 📊 规格: ${specCount} 项 | 🔻 底部栏: ${footerCount} 栏目</div>`;
+            if (templateData.description) {
+                metaHtml += `<div>📋 描述: ${templateData.description}</div>`;
+            }
+            
+            document.getElementById('templateFileMeta').innerHTML = metaHtml;
+            document.getElementById('applyTemplateBtn').disabled = false;
+        }
+        
+        // 转换旧格式模板为新格式
+        function convertOldFormatTemplate(oldData) {
+            try {
+                const newData = {
+                    version: '1.0',
+                    name: oldData.shopSelect || '旧格式模板',
+                    description: '从旧格式模板转换',
+                    createdAt: new Date().toISOString(),
+                    data: {
+                        // 主题配色
+                        theme: {
+                            key: 'custom',
+                            colors: {
+                                primary: oldData.themeColor?.mainColor || '#C41E3A',
+                                secondary: oldData.themeColor?.auxColor || '#6c757d',
+                                text: oldData.themeColor?.textColor || '#1A1A1A',
+                                bg: oldData.themeColor?.bgColor || '#FFFFFF',
+                                border: oldData.themeColor?.borderColor || '#E0E0E0'
+                            }
+                        },
+                        // 产品标题
+                        productTitle: oldData.productTitle || '',
+                        // 图片列表
+                        images: [],
+                        // 导航栏（旧格式无此字段）
+                        topNav: [],
+                        // 品类（旧格式无此字段）
+                        categories: [],
+                        // 特性（旧格式无此字段）
+                        features: [],
+                        // 规格（旧格式无此字段）
+                        specs: [],
+                        // 标签页内容
+                        tabContent: {
+                            description: oldData.tabContent?.productDesc || '',
+                            inthebox: oldData.tabContent?.packageContent || '',
+                            shipping: oldData.tabContent?.shipping || '',
+                            payment: oldData.tabContent?.payment || '',
+                            contact: oldData.tabContent?.contact || '',
+                            returns: oldData.tabContent?.returnPolicy || '',
+                            feedback: oldData.tabContent?.feedback || ''
+                        },
+                        // 标签数据
+                        tags: {
+                            desc: [],
+                            inthebox: [],
+                            shipping: [],
+                            payment: [],
+                            contact: [],
+                            returns: [],
+                            feedback: []
+                        },
+                        // 底部导航栏
+                        footerCols: [],
+                        // 品牌信息
+                        brand: {
+                            name: oldData.brandInfo?.brandName || '',
+                            slogan: oldData.brandInfo?.brandSlogan || '',
+                            paymentIcons: oldData.brandInfo?.payIcons || '',
+                            copyright: oldData.brandInfo?.copyright || ''
+                        }
+                    }
+                };
+                
+                return newData;
+            } catch (e) {
+                console.error('转换旧格式模板失败:', e);
+                return null;
+            }
+        }
+        
+        // 应用加载的模板到编辑器
+        function applyLoadedTemplate() {
+            if (!currentLoadedTemplate) {
+                alert('请先选择一个模板文件！');
+                return;
+            }
+            
+            if (!confirm('⚠️ 应用模板将覆盖当前所有编辑内容，确定继续吗？')) {
+                return;
+            }
+            
+            try {
+                const data = currentLoadedTemplate.data;
+                
+                // 1. 应用主题配色
+                if (data.theme) {
+                    // 检查是否是预置主题
+                    let themeApplied = false;
+                    if (themes[data.theme.key]) {
+                        currentTheme = data.theme.key;
+                    } else {
+                        // 创建自定义主题
+                        const customKey = 'template_custom_' + Date.now();
+                        themes[customKey] = {
+                            name: (currentLoadedTemplate.name || 'Template') + ' Theme',
+                            desc: '从模板加载',
+                            primary: data.theme.colors.primary,
+                            secondary: data.theme.colors.secondary,
+                            text: data.theme.colors.text,
+                            bg: data.theme.colors.bg,
+                            border: data.theme.colors.border
+                        };
+                        currentTheme = customKey;
+                    }
+                }
+                
+                // 2. 产品标题
+                if (data.productTitle !== undefined) {
+                    document.getElementById('productTitle').value = data.productTitle;
+                }
+                
+                // 3. 图片
+                if (data.images && Array.isArray(data.images)) {
+                    productImages = data.images.map((img, index) => ({
+                        src: img.src || '',
+                        alt: img.alt || `Image ${index + 1}`
+                    }));
+                    renderImages();
+                }
+                
+                // 4. 导航栏
+                if (data.topNav && Array.isArray(data.topNav)) {
+                    topNavItems = JSON.parse(JSON.stringify(data.topNav));
+                    renderTopNav();
+                }
+                
+                // 5. 品类
+                if (data.categories && Array.isArray(data.categories)) {
+                    categoryItems = JSON.parse(JSON.stringify(data.categories));
+                    renderCategories();
+                }
+                
+                // 6. 特性
+                if (data.features && Array.isArray(data.features)) {
+                    featureItems = JSON.parse(JSON.stringify(data.features));
+                    renderFeatures();
+                }
+                
+                // 7. 规格
+                if (data.specs && Array.isArray(data.specs)) {
+                    specItems = JSON.parse(JSON.stringify(data.specs));
+                    renderSpecs();
+                }
+                
+                // 8. 标签页内容
+                if (data.tabContent) {
+                    if (data.tabContent.description !== undefined) {
+                        document.getElementById('descEditor').innerHTML = data.tabContent.description;
+                    }
+                    if (data.tabContent.inthebox !== undefined) {
+                        document.getElementById('boxEditor').innerHTML = data.tabContent.inthebox;
+                    }
+                    if (data.tabContent.shipping !== undefined) {
+                        document.getElementById('shippingEditor').innerHTML = data.tabContent.shipping;
+                    }
+                    if (data.tabContent.payment !== undefined) {
+                        document.getElementById('paymentEditor').innerHTML = data.tabContent.payment;
+                    }
+                    if (data.tabContent.contact !== undefined) {
+                        document.getElementById('contactEditor').innerHTML = data.tabContent.contact;
+                    }
+                    if (data.tabContent.returns !== undefined) {
+                        document.getElementById('returnsEditor').innerHTML = data.tabContent.returns;
+                    }
+                    if (data.tabContent.feedback !== undefined) {
+                        document.getElementById('feedbackEditor').innerHTML = data.tabContent.feedback;
+                    }
+                }
+                
+                // 9. 标签数据
+                if (data.tags) {
+                    tagsData = JSON.parse(JSON.stringify(data.tags));
+                    renderAllTags();
+                }
+                
+                // 10. 底部导航栏
+                if (data.footerCols && Array.isArray(data.footerCols)) {
+                    footerCols = JSON.parse(JSON.stringify(data.footerCols));
+                    renderFooterCols();
+                }
+                
+                // 11. 品牌信息
+                if (data.brand) {
+                    if (data.brand.name !== undefined) {
+                        document.getElementById('brandName').value = data.brand.name;
+                    }
+                    if (data.brand.slogan !== undefined) {
+                        document.getElementById('brandSlogan').value = data.brand.slogan;
+                    }
+                    if (data.brand.paymentIcons !== undefined) {
+                        document.getElementById('paymentIcons').value = data.brand.paymentIcons;
+                    }
+                    if (data.brand.copyright !== undefined) {
+                        document.getElementById('copyrightText').value = data.brand.copyright;
+                    }
+                }
+                
+                // 12. 重新初始化主题选择器显示
+                initThemeSelector();
+                
+                // 13. 更新预览
+                updatePreview();
+                
+                closeLoadTemplateModal();
+                alert(`✅ 模板 "${currentLoadedTemplate.name}" 已成功加载！\n\n已自动填充所有模块，您可以继续编辑或生成HTML。`);
+                
+            } catch (error) {
+                console.error('应用模板失败:', error);
+                alert('❌ 应用模板失败！\n\n错误信息: ' + error.message);
+            }
+        }
+        
+        // 渲染所有标签
+        function renderAllTags() {
+            renderTags('desc');
+            renderTags('inthebox');
+            renderTags('shipping');
+            renderTags('payment');
+            renderTags('contact');
+            renderTags('returns');
+            renderTags('feedback');
+        }
+        
+        // 模板文件拖拽上传支持
+        function initTemplateDragDrop() {
+            const uploadArea = document.getElementById('templateUploadArea');
+            if (!uploadArea) return;
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.classList.add('dragover');
+                });
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.classList.remove('dragover');
+                });
+            });
+            
+            uploadArea.addEventListener('drop', function(e) {
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    const file = files[0];
+                    if (file.name.endsWith('.json')) {
+                        readTemplateFile(file);
+                    } else {
+                        alert('❌ 请上传 .json 格式的模板文件！');
+                    }
+                }
+            });
+        }
     </script>
     
     <button class="toggle-store-btn" id="toggleStoreBtn" onclick="toggleStoreSelector()" title="切换店铺选择器">✕</button>
