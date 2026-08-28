@@ -1154,13 +1154,12 @@
         }
         
        .ai-chat-messages {
-            flex: 1;
+            flex: 1 1 auto;
             overflow-y: auto;
             padding: 25px;
             /* 把原来 background: #f8f9fa; 注释或者删掉 */
             background: transparent;  /* ✅设置透明，让父容器的半透效果透出来 */
-            min-height: 400px;
-            max-height: 500px;
+            min-height: 120px;
 }
         
         .ai-message {
@@ -1243,6 +1242,9 @@
             background: transparent;
             border-top: 1px solid #e0e0e0;
             padding: 20px 25px;
+            flex-shrink: 0;
+            overflow-y: auto;
+            max-height: 55vh;
         }
         
         .ai-chat-toolbar {
@@ -1299,6 +1301,8 @@
             font-size: 0.95em;
             font-family: inherit;
             resize: vertical;
+            min-height: 60px;
+            max-height: 150px;
             margin-bottom: 15px;
             transition: border-color 0.3s;
             background: transparent;
@@ -1424,15 +1428,15 @@
                 width: 95%;
                 max-height: 95vh;
             }
-            
+
             .ai-chat-messages {
                 padding: 15px;
-                min-height: 300px;
-                max-height: 400px;
+                min-height: 100px;
             }
-            
+
             .ai-chat-input-container {
                 padding: 15px;
+                max-height: 60vh;
             }
             
             .ai-chat-toolbar {
@@ -2395,6 +2399,318 @@
             transition: background 0.2s, color 0.2s;
         }
         #logoutBtn:hover { background: #ff0101; color: #1a1408; }
+
+        /* ============ 单产品/多产品模式切换 ============ */
+        .mode-switch-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 18px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #f7f8fa 0%, #eef0f4 100%);
+            border: 1px solid #dfe3ea;
+            border-radius: 8px;
+        }
+        .mode-switch-bar .ms-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.92em;
+            font-weight: 600;
+            color: #2a3140;
+        }
+        .mode-switch-bar .ms-label .ms-hint {
+            font-weight: 400;
+            color: #8a909c;
+            font-size: 0.85em;
+        }
+        .mode-toggle {
+            display: inline-flex;
+            background: #fff;
+            border: 1px solid #c8cdd6;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .mode-toggle button {
+            padding: 8px 18px;
+            border: none;
+            background: transparent;
+            color: #5a6270;
+            font-size: 0.88em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .mode-toggle button.active {
+            background: #17458b;
+            color: #fff;
+        }
+        .mode-toggle button:not(.active):hover { background: #eef0f4; }
+
+        /* ============ 多产品单元（组合装） ============ */
+        .multi-product-area { display: none; }
+        .multi-product-area.active { display: block; }
+        .single-product-area.hidden { display: none !important; }
+
+        .multi-product-unit {
+            border: 1px solid #d4dae3;
+            border-radius: 10px;
+            margin-bottom: 18px;
+            background: #fff;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .mpu-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, #1f4a8f 0%, #2a5aad 100%);
+            color: #fff;
+        }
+        .mpu-header .mpu-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+        .mpu-header .mpu-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 26px;
+            height: 26px;
+            padding: 0 8px;
+            background: rgba(255,255,255,0.18);
+            border-radius: 13px;
+            font-size: 0.82em;
+            font-weight: 700;
+        }
+        .mpu-header .mpu-name-input {
+            flex: 1;
+            max-width: 360px;
+            padding: 7px 12px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 5px;
+            background: rgba(255,255,255,0.12);
+            color: #fff;
+            font-size: 0.92em;
+            outline: none;
+        }
+        .mpu-header .mpu-name-input::placeholder { color: rgba(255,255,255,0.6); }
+        .mpu-header .mpu-name-input:focus { background: rgba(255,255,255,0.2); border-color: #fff; }
+        .mpu-header .mpu-actions { display: flex; gap: 6px; }
+        .mpu-header .mpu-actions button {
+            padding: 6px 10px;
+            border: 1px solid rgba(255,255,255,0.35);
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border-radius: 4px;
+            font-size: 0.8em;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .mpu-header .mpu-actions button:hover { background: rgba(255,255,255,0.25); }
+        .mpu-header .mpu-actions button.danger:hover { background: #c0392b; border-color: #c0392b; }
+
+        .mpu-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            padding: 16px;
+        }
+        .mpu-col h4 {
+            font-size: 0.88em;
+            font-weight: 700;
+            color: #2a3140;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #e6e9ef;
+        }
+        .mpu-col .mpu-img-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 8px;
+            min-height: 60px;
+            margin-bottom: 10px;
+        }
+        .mpu-col .mpu-img-item {
+            position: relative;
+            border: 1px solid #d4dae3;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #f5f6f8;
+            aspect-ratio: 1;
+        }
+        .mpu-col .mpu-img-item img { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .mpu-col .mpu-img-item .mpu-img-del {
+            position: absolute;
+            top: 2px; right: 2px;
+            width: 18px; height: 18px;
+            border: none;
+            background: rgba(0,0,0,0.55);
+            color: #fff;
+            border-radius: 50%;
+            font-size: 12px;
+            line-height: 1;
+            cursor: pointer;
+        }
+        .mpu-col .mpu-img-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .mpu-col .mpu-img-actions input,
+        .mpu-col .mpu-img-actions textarea {
+            width: 100%;
+            padding: 9px;
+            border: 1px solid #cdd3dc;
+            border-radius: 5px;
+            font-size: 0.85em;
+            outline: none;
+        }
+        .mpu-col .mpu-img-actions textarea { min-height: 60px; resize: vertical; }
+        .mpu-col .mpu-spec-rows { margin-bottom: 8px; }
+        .mpu-col .mpu-spec-row {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+        .mpu-col .mpu-spec-row input {
+            padding: 8px;
+            border: 1px solid #cdd3dc;
+            border-radius: 5px;
+            font-size: 0.85em;
+            outline: none;
+        }
+        .mpu-col .mpu-spec-row input:first-child { flex: 0 0 38%; }
+        .mpu-col .mpu-spec-row input:last-of-type { flex: 1; }
+        .mpu-col .mpu-spec-row .mpu-spec-del {
+            flex: 0 0 30px;
+            border: none;
+            background: #e74c3c;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85em;
+        }
+        .mpu-add-unit-btn {
+            width: 100%;
+            padding: 12px;
+            border: 2px dashed #b8c0cc;
+            background: #fafbfc;
+            color: #5a6270;
+            border-radius: 8px;
+            font-size: 0.92em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .mpu-add-unit-btn:hover { border-color: #17458b; color: #17458b; background: #eef3fb; }
+
+        /* 多产品描述分块 */
+        .multi-desc-area { display: none; }
+        .multi-desc-area.active { display: block; }
+        .multi-desc-unit {
+            margin-bottom: 18px;
+            border: 1px solid #d4dae3;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .multi-desc-unit .mdu-head {
+            padding: 10px 14px;
+            background: #eef1f6;
+            border-bottom: 1px solid #d4dae3;
+            font-weight: 600;
+            color: #2a3140;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .multi-desc-unit .mdu-head .mdu-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 22px;
+            height: 22px;
+            background: #17458b;
+            color: #fff;
+            border-radius: 11px;
+            font-size: 0.78em;
+            font-weight: 700;
+        }
+        .multi-desc-unit .editor-content { min-height: 120px; }
+
+        /* 多产品模式 AI 提示条 */
+        .multi-ai-hint {
+            padding: 10px 14px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #eef3fb 0%, #e4ecf7 100%);
+            border: 1px solid #c5d4ea;
+            border-left: 4px solid #17458b;
+            border-radius: 6px;
+            font-size: 0.85em;
+            color: #2a3140;
+            line-height: 1.6;
+        }
+
+        /* 多产品模式：AI 输入区每个产品独立分隔输入框 */
+        .multi-product-info-area { margin-bottom: 10px; }
+        .mp-info-block {
+            margin-bottom: 10px;
+            border: 1px solid #d4dae3;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .mp-info-block .mpib-head {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: linear-gradient(135deg, #1f4a8f 0%, #2a5aad 100%);
+            color: #fff;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .mp-info-block .mpib-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 20px;
+            height: 20px;
+            padding: 0 6px;
+            background: rgba(255,255,255,0.22);
+            border-radius: 10px;
+            font-size: 0.78em;
+            font-weight: 700;
+        }
+        .mp-info-block .mpib-name {
+            flex: 1;
+            opacity: 0.92;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .mp-info-block textarea {
+            width: 100%;
+            min-height: 56px;
+            max-height: 120px;
+            padding: 10px 12px;
+            border: none;
+            border-top: 1px solid #d4dae3;
+            border-radius: 0 0 8px 8px;
+            font-size: 0.88em;
+            font-family: inherit;
+            resize: vertical;
+            outline: none;
+            box-sizing: border-box;
+        }
+        .mp-info-block textarea:focus {
+            background: #f8fafd;
+            box-shadow: inset 0 0 0 2px #17458b;
+        }
     </style>
 </head>
 <body>
@@ -2547,7 +2863,15 @@
                     </div>
                     <div class="ai-chat-product-info">
                         <div class="ai-chat-product-title"> 智能产品信息生成</div>
-                        <textarea id="aiProductInfoInput" placeholder="输入产品信息（如：产品名称、主要特点、用途、目标市场等）..." rows="4"></textarea>
+                        <div id="multiProductAIHint" class="multi-ai-hint" style="display:none;">
+                            🧩 <strong>组合装模式</strong>：AI 将按页面产品单元从上到下的顺序，分别为每款产品生成规格与描述。
+                            当前已有 <span id="multiProductCountBadge" style="font-weight:700;color:#17458b;">0</span> 个产品单元。
+                            如需更多产品，请先在编辑区点「+ 添加产品单元」，AI 返回数量多于现有单元时会自动新增。
+                        </div>
+                        <!-- 单产品模式：单一输入框 -->
+                        <textarea id="aiProductInfoInput" class="single-product-area" placeholder="输入产品信息（如：产品名称、主要特点、用途、目标市场等）..." rows="4"></textarea>
+                        <!-- 组合装模式：每个产品独立分隔输入框，避免 AI 误判混淆 -->
+                        <div id="multiProductInfoArea" class="multi-product-info-area" style="display:none;"></div>
                         <button class="ai-chat-generate-btn" onclick="generateProductInfo()"> 智能生成产品信息</button>
                     </div>
                     <!--<div class="ai-chat-input-row">
@@ -2620,8 +2944,20 @@
             </div>
             <div class="editor-section">
                 <h2 class="section-title">📝 编辑内容</h2>
-                
-                <div class="form-group">
+
+                <!-- 模式切换：单产品 ↔ 多产品（组合装） -->
+                <div class="mode-switch-bar">
+                    <div class="ms-label">
+                        <span>📦 编辑模式</span>
+                        <span class="ms-hint">单产品 / 组合装多产品</span>
+                    </div>
+                    <div class="mode-toggle">
+                        <button type="button" id="modeBtnSingle" class="active" onclick="switchEditorMode('single')">单物品</button>
+                        <button type="button" id="modeBtnMulti" onclick="switchEditorMode('multi')">组合装</button>
+                    </div>
+                </div>
+
+                <div class="form-group single-product-area" id="singleProductTitleArea">
                     <label>产品标题</label>
                     <div style="display: flex; gap: 10px;">
                         <input type="text" id="productTitle" placeholder="输入产品标题" style="flex: 1;">
@@ -2632,8 +2968,8 @@
                     </div>
                 </div>
                 
-                <h3 class="subsection-title">🖼️ 产品图片管理</h3>
-                <div class="form-group">
+                <h3 class="subsection-title single-product-area">🖼️ 产品图片管理</h3>
+                <div class="form-group single-product-area">
                     <div class="image-upload-container">
                         <div class="image-list" id="imageList">
                         </div>
@@ -2685,11 +3021,18 @@
                     <button class="btn btn-add-small" onclick="addFeatureItem()">+ 添加特性项</button>
                 </div>
                 
-                <h3 class="subsection-title">📊 产品规格</h3>
-                <div class="form-group">
+                <h3 class="subsection-title single-product-area">📊 产品规格</h3>
+                <div class="form-group single-product-area">
                     <div id="specList">
                     </div>
                     <button class="btn btn-add-small" onclick="addSpecRow()">+ 添加规格</button>
+                </div>
+
+                <!-- 多产品（组合装）单元区：多产品模式下显示，纵向堆叠多个产品单元 -->
+                <div class="multi-product-area" id="multiProductArea">
+                    <h3 class="subsection-title">🧩 组合装产品单元</h3>
+                    <div id="multiProductUnits"></div>
+                    <button class="mpu-add-unit-btn" onclick="addMultiProduct()">+ 添加产品单元</button>
                 </div>
                 
                 <h3 class="subsection-title">📄 标签页内容</h3>
@@ -2705,7 +3048,7 @@
                     </div>
                     
                     <div id="description" class="tab-content active">
-                        <div class="form-group">
+                        <div class="form-group single-product-area">
                             <label>产品描述内容</label>
                             <div class="rich-text-editor">
                                 <div class="editor-toolbar">
@@ -2761,6 +3104,9 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- 多产品模式：每个产品独立的描述编辑器分块 -->
+                        <div class="multi-desc-area" id="multiDescArea"></div>
                     </div>
                     
                     <div id="inthebox" class="tab-content">
@@ -3201,6 +3547,12 @@
           let featureItems = [];
           let specItems = [];
           let footerCols = [];
+
+          // ====== 多产品（组合装）模式数据模型 ======
+          // editorMode: 'single' 单产品模式（默认，行为与旧版完全一致） | 'multi' 组合装模式
+          // multiProducts: 每个子产品独立字段；全局公共字段(导航/品类/特性/包装/运输/支付/联系/退货/反馈/底部/品牌)仍用上方全局变量
+          let editorMode = 'single';
+          let multiProducts = []; // [{title, images:[{src,alt}], specs:[{label,value}], descContent, descTags:[]}]
 
           const themes = {
                 classicNavy: {
@@ -4401,7 +4753,459 @@
             footerCols[colIndex].links.splice(linkIndex, 1);
             renderFooterCols();
         }
-        
+
+        // ============================================================
+        // ============ 多产品（组合装）模式：核心逻辑 =================
+        // ============================================================
+
+        // 创建一个空白子产品单元
+        function createBlankProduct(title) {
+            return {
+                title: title || '',
+                images: [],
+                specs: [],
+                descContent: '',
+                descTags: [],
+                aiInput: '' // AI 输入区该产品的独立信息（组合装模式专用）
+            };
+        }
+
+        // 单产品 → 多产品：把当前单产品数据迁移为 multiProducts[0]
+        function syncSingleToMulti() {
+            if (multiProducts.length === 0) {
+                multiProducts.push(createBlankProduct());
+            }
+            // 始终用当前单产品数据刷新第 0 个单元，避免切换后丢失最新编辑
+            multiProducts[0].title = document.getElementById('productTitle').value;
+            multiProducts[0].images = productImages.map(img => ({ src: img.src, alt: img.alt }));
+            multiProducts[0].specs = specItems.map(s => ({ label: s.label, value: s.value }));
+            multiProducts[0].descContent = getEditorContent('descEditor');
+            multiProducts[0].descTags = (tagsData.desc || []).slice();
+        }
+
+        // 多产品 → 单产品：把 multiProducts[0] 迁回单产品字段
+        function syncMultiToSingle() {
+            if (multiProducts.length === 0) {
+                multiProducts.push(createBlankProduct());
+            }
+            var p = multiProducts[0];
+            document.getElementById('productTitle').value = p.title || '';
+            productImages = (p.images || []).map(img => ({ src: img.src, alt: img.alt }));
+            specItems = (p.specs || []).map(s => ({ label: s.label, value: s.value }));
+            document.getElementById('descEditor').innerHTML = p.descContent || '';
+            if (tagsData.desc) {
+                tagsData.desc = (p.descTags || []).slice();
+            } else {
+                tagsData.desc = (p.descTags || []).slice();
+            }
+            renderImages();
+            renderSpecs();
+            renderTags('desc');
+        }
+
+        // 切换编辑模式
+        function switchEditorMode(mode) {
+            if (mode === editorMode) return;
+            if (!confirm(mode === 'multi'
+                ? '切换到「组合装」模式：当前单产品内容将作为第 1 个产品单元保留，可继续追加更多产品。是否继续？'
+                : '切换回「单物品」模式：将使用第 1 个产品单元的内容，其余产品单元仍保留在数据中（再次切回组合装可恢复）。是否继续？')) {
+                return;
+            }
+            if (mode === 'multi') {
+                syncSingleToMulti();
+            } else {
+                syncMultiToSingle();
+            }
+            editorMode = mode;
+            applyModeUI();
+            renderMultiProducts();
+            renderMultiDesc();
+            updatePreview();
+        }
+
+        // 应用模式相关的 UI 显示/隐藏
+        function applyModeUI() {
+            var singles = document.querySelectorAll('.single-product-area');
+            var multiArea = document.getElementById('multiProductArea');
+            var multiDesc = document.getElementById('multiDescArea');
+            var btnS = document.getElementById('modeBtnSingle');
+            var btnM = document.getElementById('modeBtnMulti');
+            var aiHint = document.getElementById('multiProductAIHint');
+            var aiBadge = document.getElementById('multiProductCountBadge');
+            var mpInfoArea = document.getElementById('multiProductInfoArea');
+            if (editorMode === 'multi') {
+                singles.forEach(el => el.classList.add('hidden'));
+                if (multiArea) multiArea.classList.add('active');
+                if (multiDesc) multiDesc.classList.add('active');
+                if (btnS) btnS.classList.remove('active');
+                if (btnM) btnM.classList.add('active');
+                if (aiHint) aiHint.style.display = 'block';
+                if (mpInfoArea) mpInfoArea.style.display = 'block';
+                renderMultiProductInfoInputs();
+            } else {
+                singles.forEach(el => el.classList.remove('hidden'));
+                if (multiArea) multiArea.classList.remove('active');
+                if (multiDesc) multiDesc.classList.remove('active');
+                if (btnS) btnS.classList.add('active');
+                if (btnM) btnM.classList.remove('active');
+                if (aiHint) aiHint.style.display = 'none';
+                if (mpInfoArea) mpInfoArea.style.display = 'none';
+            }
+            // 同步产品数量徽标
+            if (aiBadge) aiBadge.textContent = String(multiProducts.length);
+        }
+
+        // ---- 多产品单元渲染 ----
+        function renderMultiProducts() {
+            var container = document.getElementById('multiProductUnits');
+            if (!container) return;
+            container.innerHTML = '';
+            multiProducts.forEach(function (prod, index) {
+                container.appendChild(buildProductUnit(prod, index));
+            });
+            // 同步 AI 提示条的产品数量徽标
+            var aiBadge = document.getElementById('multiProductCountBadge');
+            if (aiBadge) aiBadge.textContent = String(multiProducts.length);
+            // 同步渲染 AI 输入区的每个产品独立输入框
+            renderMultiProductInfoInputs();
+        }
+
+        // ---- 多产品 AI 输入区：每个产品独立分隔输入框 ----
+        // 渲染前先把当前输入框内容存回数据，避免重渲染丢失输入
+        function renderMultiProductInfoInputs() {
+            // 先保存当前输入框内容到 multiProducts[i].aiInput
+            saveMultiProductInfoInputs();
+            var container = document.getElementById('multiProductInfoArea');
+            if (!container) return;
+            container.innerHTML = '';
+            multiProducts.forEach(function (prod, index) {
+                var block = document.createElement('div');
+                block.className = 'mp-info-block';
+                var nameDisplay = prod.title ? ('· ' + escapeHTML(prod.title)) : '';
+                block.innerHTML =
+                    '<div class="mpib-head">' +
+                        '<span class="mpib-badge">' + (index + 1) + '</span>' +
+                        '<span class="mpib-name">Product ' + (index + 1) + ' ' + nameDisplay + ' · 信息输入</span>' +
+                    '</div>' +
+                    '<textarea id="mpAiInput-' + index + '" placeholder="为该产品单独输入信息（产品名称、特点、用途等），与其他产品分开，避免 AI 混淆" ' +
+                        'oninput="updateMultiAiInput(' + index + ', this.value)">' + escapeHTML(prod.aiInput || '') + '</textarea>';
+                container.appendChild(block);
+            });
+        }
+
+        // 保存当前所有 AI 输入框内容到数据（重渲染前调用，防止丢失）
+        function saveMultiProductInfoInputs() {
+            multiProducts.forEach(function (prod, index) {
+                var ta = document.getElementById('mpAiInput-' + index);
+                if (ta) prod.aiInput = ta.value;
+            });
+        }
+
+        function updateMultiAiInput(index, value) {
+            if (!multiProducts[index]) return;
+            multiProducts[index].aiInput = value;
+        }
+
+        function buildProductUnit(prod, index) {
+            var unit = document.createElement('div');
+            unit.className = 'multi-product-unit';
+
+            // 图片列表 HTML
+            var imgsHTML = (prod.images || []).map(function (img, i) {
+                return '<div class="mpu-img-item">' +
+                    '<img src="' + escapeAttr(img.src) + '" alt="' + escapeAttr(img.alt || '') + '">' +
+                    '<button class="mpu-img-del" onclick="removeMultiImage(' + index + ',' + i + ')" title="删除">×</button>' +
+                    '</div>';
+            }).join('');
+
+            // 规格行 HTML
+            var specsHTML = (prod.specs || []).map(function (s, i) {
+                return '<div class="mpu-spec-row">' +
+                    '<input type="text" value="' + escapeAttr(s.label || '') + '" placeholder="规格标签" onchange="updateMultiSpec(' + index + ',' + i + ',\'label\',this.value)">' +
+                    '<input type="text" value="' + escapeAttr(s.value || '') + '" placeholder="规格值" onchange="updateMultiSpec(' + index + ',' + i + ',\'value\',this.value)">' +
+                    '<button class="mpu-spec-del" onclick="removeMultiSpec(' + index + ',' + i + ')" title="删除">×</button>' +
+                    '</div>';
+            }).join('');
+
+            unit.innerHTML =
+                '<div class="mpu-header">' +
+                    '<div class="mpu-title-wrap">' +
+                        '<span class="mpu-badge">Product ' + (index + 1) + '</span>' +
+                        '<input type="text" class="mpu-name-input" value="' + escapeAttr(prod.title || '') + '" placeholder="该产品标题" onchange="updateMultiTitle(' + index + ',this.value)">' +
+                    '</div>' +
+                    '<div class="mpu-actions">' +
+                        (index > 0 ? '<button onclick="removeMultiProduct(' + index + ')" class="danger" title="删除该产品单元">删除产品</button>' : '') +
+                        '<button onclick="moveMultiProduct(' + index + ',-1)" ' + (index === 0 ? 'disabled style="opacity:0.4;cursor:not-allowed;"' : '') + ' title="上移">↑</button>' +
+                        '<button onclick="moveMultiProduct(' + index + ',1)" ' + (index === multiProducts.length - 1 ? 'disabled style="opacity:0.4;cursor:not-allowed;"' : '') + ' title="下移">↓</button>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="mpu-body">' +
+                    '<div class="mpu-col">' +
+                        '<h4>🖼️ 产品图片</h4>' +
+                        '<div class="mpu-img-list" id="mpImgList-' + index + '">' + imgsHTML + '</div>' +
+                        '<div class="mpu-img-actions">' +
+                            '<input type="url" id="mpImgUrl-' + index + '" placeholder="图片URL" onkeydown="if(event.key===\'Enter\'){event.preventDefault();addMultiImageUrl(' + index + ');}">' +
+                            '<button class="btn btn-add-small" onclick="addMultiImageUrl(' + index + ')">添加图片</button>' +
+                            '<textarea id="mpImgBatch-' + index + '" placeholder="批量URL（每行一个）"></textarea>' +
+                            '<button class="btn btn-add-small" onclick="addMultiImageBatch(' + index + ')">批量添加</button>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="mpu-col">' +
+                        '<h4>📊 产品规格</h4>' +
+                        '<div class="mpu-spec-rows" id="mpSpecRows-' + index + '">' + specsHTML + '</div>' +
+                        '<button class="btn btn-add-small" onclick="addMultiSpec(' + index + ')">+ 添加规格</button>' +
+                    '</div>' +
+                '</div>';
+            return unit;
+        }
+
+        function addMultiProduct() {
+            multiProducts.push(createBlankProduct());
+            renderMultiProducts();
+            renderMultiDesc();
+            updatePreview();
+        }
+
+        function removeMultiProduct(index) {
+            if (multiProducts.length <= 1) {
+                alert('至少需要保留 1 个产品单元。');
+                return;
+            }
+            if (!confirm('确定删除「产品 ' + (index + 1) + '」？该产品的图片/规格/描述将一并删除。')) return;
+            multiProducts.splice(index, 1);
+            renderMultiProducts();
+            renderMultiDesc();
+            updatePreview();
+        }
+
+        function moveMultiProduct(index, dir) {
+            var ni = index + dir;
+            if (ni < 0 || ni >= multiProducts.length) return;
+            var tmp = multiProducts[index];
+            multiProducts[index] = multiProducts[ni];
+            multiProducts[ni] = tmp;
+            renderMultiProducts();
+            renderMultiDesc();
+            updatePreview();
+        }
+
+        function updateMultiTitle(index, value) {
+            if (!multiProducts[index]) return;
+            multiProducts[index].title = value;
+            renderMultiDesc(); // 同步描述分块的标题
+            updatePreview();
+        }
+
+        // ---- 多产品图片操作 ----
+        function addMultiImageUrl(index) {
+            var input = document.getElementById('mpImgUrl-' + index);
+            if (!input) return;
+            var url = input.value.trim();
+            if (!url) return;
+            multiProducts[index].images.push({ src: url, alt: 'Product ' + (index + 1) + ' Image' });
+            input.value = '';
+            renderMultiProducts();
+            updatePreview();
+        }
+
+        function addMultiImageBatch(index) {
+            var ta = document.getElementById('mpImgBatch-' + index);
+            if (!ta) return;
+            var lines = ta.value.split('\n').map(function (s) { return s.trim(); }).filter(Boolean);
+            if (lines.length === 0) return;
+            lines.forEach(function (url) {
+                multiProducts[index].images.push({ src: url, alt: 'Product ' + (index + 1) + ' Image' });
+            });
+            ta.value = '';
+            renderMultiProducts();
+            updatePreview();
+        }
+
+        function removeMultiImage(index, imgIndex) {
+            multiProducts[index].images.splice(imgIndex, 1);
+            renderMultiProducts();
+            updatePreview();
+        }
+
+        // ---- 多产品规格操作 ----
+        function addMultiSpec(index) {
+            multiProducts[index].specs.push({ label: '', value: '' });
+            renderMultiProducts();
+            updatePreview();
+        }
+
+        function updateMultiSpec(index, specIndex, field, value) {
+            if (!multiProducts[index] || !multiProducts[index].specs[specIndex]) return;
+            multiProducts[index].specs[specIndex][field] = value;
+            updatePreview();
+        }
+
+        function removeMultiSpec(index, specIndex) {
+            multiProducts[index].specs.splice(specIndex, 1);
+            renderMultiProducts();
+            updatePreview();
+        }
+
+        // ---- 多产品描述分块渲染 ----
+        function renderMultiDesc() {
+            var container = document.getElementById('multiDescArea');
+            if (!container) return;
+            container.innerHTML = '';
+            multiProducts.forEach(function (prod, index) {
+                var block = document.createElement('div');
+                block.className = 'multi-desc-unit';
+                block.innerHTML =
+                    '<div class="mdu-head">' +
+                        '<span class="mdu-badge">' + (index + 1) + '</span>' +
+                        '<span>Product ' + (index + 1) + (prod.title ? ' · ' + escapeHTML(prod.title) : '') + ' Description</span>' +
+                    '</div>' +
+                    '<div class="editor-content" id="mpDescEditor-' + index + '" contenteditable="true" oninput="updateMultiDesc(' + index + ', this.innerHTML)"></div>';
+                container.appendChild(block);
+            });
+            // 填充已保存的描述内容（innerHTML 直接赋值，避免触发 oninput 死循环）
+            multiProducts.forEach(function (prod, index) {
+                var ed = document.getElementById('mpDescEditor-' + index);
+                if (ed) ed.innerHTML = prod.descContent || '';
+            });
+        }
+
+        function updateMultiDesc(index, html) {
+            if (!multiProducts[index]) return;
+            multiProducts[index].descContent = html;
+            updatePreview();
+        }
+
+        // ---- 工具：属性/文本转义 ----
+        function escapeAttr(s) {
+            return String(s == null ? '' : s)
+                .replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+                .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+        function escapeHTML(s) {
+            return String(s == null ? '' : s)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        // ============================================================
+        // ============ 多产品模式：预览渲染（组合装布局） =============
+        // ============================================================
+        // 生成多产品模式的 HTML（复用单产品的主题/导航/特性/底部/公共标签页）
+        function generateMultiHTML() {
+            const theme = getCurrentThemeColors();
+            const brandName = document.getElementById('brandName').value;
+            const brandSlogan = document.getElementById('brandSlogan').value;
+            const paymentIcons = document.getElementById('paymentIcons').value.split(',').map(s => s.trim());
+            const copyrightText = document.getElementById('copyrightText').value;
+
+            // 公共标签页内容（全局共享）
+            const boxContent = getEditorContent('boxEditor');
+            const shippingContent = getEditorContent('shippingEditor');
+            const paymentContent = getEditorContent('paymentEditor');
+            const contactContent = getEditorContent('contactEditor');
+            const returnsContent = getEditorContent('returnsEditor');
+            const feedbackContent = getEditorContent('feedbackEditor');
+
+            const boxTagsHTML = tagsData.inthebox && tagsData.inthebox.length > 0 ?
+                '<div class="content-tags">' + tagsData.inthebox.map(tag => '<span class="content-tag">' + tag + '</span>').join('') + '</div>' : '';
+            const shippingTagsHTML = tagsData.shipping && tagsData.shipping.length > 0 ?
+                '<div class="content-tags">' + tagsData.shipping.map(tag => '<span class="content-tag">' + tag + '</span>').join('') + '</div>' : '';
+            const paymentTagsHTML = tagsData.payment && tagsData.payment.length > 0 ?
+                '<div class="content-tags">' + tagsData.payment.map(tag => '<span class="content-tag">' + tag + '</span>').join('') + '</div>' : '';
+            const contactTagsHTML = tagsData.contact && tagsData.contact.length > 0 ?
+                '<div class="content-tags">' + tagsData.contact.map(tag => '<span class="content-tag">' + tag + '</span>').join('') + '</div>' : '';
+            const returnsTagsHTML = tagsData.returns && tagsData.returns.length > 0 ?
+                '<div class="content-tags">' + tagsData.returns.map(tag => '<span class="content-tag">' + tag + '</span>').join('') + '</div>' : '';
+            const feedbackTagsHTML = tagsData.feedback && tagsData.feedback.length > 0 ?
+                '<div class="content-tags">' + tagsData.feedback.map(tag => '<span class="content-tag">' + tag + '</span>').join('') + '</div>' : '';
+
+            const topNavHTML = topNavItems.map(item =>
+                '<a class="top-nav-item" href="' + item.href + '">' + item.text + '</a>'
+            ).join('');
+            const categoryHTML = categoryItems.map(item =>
+                '<a class="top-nav-item" href="' + item.href + '">' + item.text + '</a>'
+            ).join('');
+            const featuresHTML = featureItems.map(item =>
+                '<div class="feature-item"><span class="feature-icon">' + item.icon + '</span><span>' + item.text + '</span></div>'
+            ).join('');
+            const footerColsHTML = footerCols.map(col => '<div class="footer-col"><h4>' + col.title + '</h4><ul>' + col.links.map(link => '<li><a href="' + link.href + '">' + link.text + '</a></li>').join('') + '</ul></div>').join('');
+            const paymentIconsHTML = paymentIcons.map(icon => '<div class="payment-icon">' + icon + '</div>').join('');
+
+            // 为每个子产品生成一个 product-section（图片左 + 规格右）
+            const productSectionsHTML = multiProducts.map(function (prod, index) {
+                var imgs = prod.images || [];
+                var title = prod.title || ('Product ' + (index + 1));
+                var specs = prod.specs || [];
+
+                var imagesHTML = imgs.map(function (img, i) {
+                    return '<div class="gallery-image" id="mp' + index + '-image' + (i + 1) + '"><img src="' + img.src + '" alt="' + (img.alt || '') + '" /></div>';
+                }).join('');
+                var thumbnailsHTML = imgs.map(function (img, i) {
+                    return '<label class="thumbnail" for="mp' + index + '-gallery' + (i + 1) + '"><img src="' + img.src + '" alt="' + (img.alt || '') + '" /></label>';
+                }).join('');
+                var galleryRadiosHTML = imgs.map(function (_, i) {
+                    return '<input type="radio" name="mp' + index + '-gallery" id="mp' + index + '-gallery' + (i + 1) + '" ' + (i === 0 ? 'checked' : '') + ' class="gallery-radio" />';
+                }).join('');
+                var galleryChecksHTML = imgs.map(function (_, i) {
+                    return '#mp' + index + '-gallery' + (i + 1) + ':checked ~ .main-image #mp' + index + '-image' + (i + 1);
+                }).join(', ');
+                var thumbnailChecksHTML = imgs.map(function (_, i) {
+                    return '#mp' + index + '-gallery' + (i + 1) + ':checked ~ .thumbnail-row label[for="mp' + index + '-gallery' + (i + 1) + '"]';
+                }).join(', ');
+
+                var specsHTML = specs.map(function (s) {
+                    return '<li class="spec-item"><span class="spec-label">' + (s.label || '') + '</span><span class="spec-value">' + (s.value || '') + '</span></li>';
+                }).join('');
+
+                var unitLabel = multiProducts.length > 1 ? '<div class="mp-unit-label">Combo Pack · Product ' + (index + 1) + '</div>' : '';
+
+                return '<section class="product-section"><div class="product-container">' +
+                    unitLabel +
+                    '<div class="product-gallery">' + galleryRadiosHTML +
+                        '<div class="main-image">' + imagesHTML + '</div>' +
+                        '<div class="thumbnail-row">' + thumbnailsHTML + '</div>' +
+                    '</div>' +
+                    '<div class="product-info">' +
+                        '<h2 class="product-title">' + title + '</h2>' +
+                        '<ul class="spec-list">' + specsHTML + '</ul>' +
+                    '</div>' +
+                    '</div></section>' +
+                    // 动态注入该产品的 gallery 显隐规则
+                    '<style>' + (galleryChecksHTML ? galleryChecksHTML + '{display:flex}' : '') + (thumbnailChecksHTML ? thumbnailChecksHTML + '{border-color:var(--primary-red);box-shadow:0 0 10px ' + hexToRgba(theme.primary, 0.3) + '}' : '') + '</style>';
+            }).join('');
+
+            // 描述 accordion：合并每个产品的描述（带产品标题分隔）
+            var descBlocksHTML = multiProducts.map(function (prod, index) {
+                var content = prod.descContent || '';
+                var tagsHTML = (prod.descTags && prod.descTags.length > 0)
+                    ? '<div class="content-tags">' + prod.descTags.map(function (t) { return '<span class="content-tag">' + t + '</span>'; }).join('') + '</div>' : '';
+                var head = multiProducts.length > 1 ? '<h3>Product ' + (index + 1) + (prod.title ? ' · ' + escapeHTML(prod.title) : '') + '</h3>' : '';
+                return head + content + tagsHTML;
+            }).join('<hr style="border:none;border-top:1px solid var(--border);margin:20px 0;">');
+
+            // 复用单产品的样式基座（与 generateHTML 一致），仅替换 product-section 与 description
+            const html = multiStyleBase(theme) +
+'<nav class="top-nav"><div class="top-nav-container">' + topNavHTML + '</div><div class="top-nav-container category-container">' + categoryHTML + '</div><div class="top-nav-logo"><div class="top-nav-logo-text">AZOCEK</div></div></nav>' +
+'<div class="features-bar"><div class="features-container">' + featuresHTML + '</div></div>' +
+productSectionsHTML +
+'<div class="accordion-section"><div class="accordion-container">' +
+'<div class="accordion-item"><input type="checkbox" id="acc-description" class="accordion-checkbox" checked><label for="acc-description" class="accordion-label">Description</label><div class="accordion-content"><div class="accordion-content-inner">' + descBlocksHTML + '</div></div></div>' +
+'<div class="accordion-item"><input type="checkbox" id="acc-inthebox" class="accordion-checkbox" checked><label for="acc-inthebox" class="accordion-label">In The Box</label><div class="accordion-content"><div class="accordion-content-inner">' + boxContent + boxTagsHTML + '</div></div></div>' +
+'<div class="accordion-item"><input type="checkbox" id="acc-shipping" class="accordion-checkbox"><label for="acc-shipping" class="accordion-label">Shipping</label><div class="accordion-content"><div class="accordion-content-inner">' + shippingContent + shippingTagsHTML + '</div></div></div>' +
+'<div class="accordion-item"><input type="checkbox" id="acc-payment" class="accordion-checkbox"><label for="acc-payment" class="accordion-label">Payment</label><div class="accordion-content"><div class="accordion-content-inner">' + paymentContent + paymentTagsHTML + '</div></div></div>' +
+'<div class="accordion-item"><input type="checkbox" id="acc-contact" class="accordion-checkbox"><label for="acc-contact" class="accordion-label">Contact</label><div class="accordion-content"><div class="accordion-content-inner">' + contactContent + contactTagsHTML + '</div></div></div>' +
+'<div class="accordion-item"><input type="checkbox" id="acc-returns" class="accordion-checkbox"><label for="acc-returns" class="accordion-label">Returns</label><div class="accordion-content"><div class="accordion-content-inner">' + returnsContent + returnsTagsHTML + '</div></div></div>' +
+'<div class="accordion-item"><input type="checkbox" id="acc-feedback" class="accordion-checkbox"><label for="acc-feedback" class="accordion-label">Feedback</label><div class="accordion-content"><div class="accordion-content-inner">' + feedbackContent + feedbackTagsHTML + '</div></div></div>' +
+'</div></div>' +
+'<footer class="footer-section"><div class="footer-container"><div class="footer-top"><div class="footer-brand"><div class="footer-logo-text">' + brandName + '</div><p class="footer-slogan">' + brandSlogan + '</p></div><div class="footer-links">' + footerColsHTML + '</div></div><div class="footer-bottom"><div class="payment-icons">' + paymentIconsHTML + '</div><div class="copyright-text">' + copyrightText + '</div></div></div></footer>';
+            return html;
+        }
+
+        // 多产品模式下的样式基座（基于单产品样式，追加组合装单元标签样式）
+        function multiStyleBase(theme) {
+            return '<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:\'Segoe UI\',Arial,sans-serif;line-height:1.6;color:' + theme.text + ';background:' + theme.bg + '}a{text-decoration:none;color:inherit}img{max-width:100%;height:auto;display:block}:root{--primary-red:' + theme.primary + ';--secondary:' + theme.secondary + ';--text:' + theme.text + ';--bg:' + theme.bg + ';--border:' + theme.border + '}.top-nav{background:linear-gradient(to bottom,var(--text) 0%,var(--text) 60%,var(--primary-red) 100%)}.top-nav-container{max-width:1200px;margin:0 auto;display:flex;justify-content:center;flex-wrap:wrap;gap:2px}.category-container{margin-top:0;border-top:1px solid rgba(255,255,255,.1)}.top-nav-logo{padding:20px;text-align:center;background:rgba(255,255,255,.03)}.top-nav-logo-text{font-size:2.5em;font-weight:900;color:' + theme.bg + ';letter-spacing:3px;text-transform:uppercase}.top-nav-item{padding:18px 28px;color:' + theme.bg + ';font-size:.9em;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;transition:all .3s ease;position:relative;background:rgba(255,255,255,.03)}.top-nav-item:hover{background:var(--primary-red);color:' + theme.bg + ';box-shadow:0 4px 12px ' + hexToRgba(theme.primary, 0.3) + ';transform:translateY(-2px)}.features-bar{background:var(--bg);padding:15px 20px;border-bottom:1px solid var(--border)}.features-container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:15px}.feature-item{display:flex;align-items:center;gap:8px;font-size:.85em;color:var(--text);opacity:0.8}.feature-icon{width:24px;height:24px;color:var(--primary-red);font-size:1.1em}.product-section{padding:40px 20px;background:var(--bg)}.product-section+.product-section{padding-top:10px;border-top:1px dashed var(--border)}.mp-unit-label{grid-column:1/-1;text-align:center;font-size:.8em;font-weight:700;color:var(--primary-red);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;padding:6px 0;border-top:2px solid var(--primary-red);border-bottom:1px solid var(--border)}.product-container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}.product-gallery{background:' + hexToRgba(theme.secondary, 0.1) + ';padding:30px;border:1px solid var(--border);position:relative;border-radius:8px}.gallery-radio{display:none}.main-image{background:var(--bg);border-radius:8px;padding:20px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;min-height:600px}.gallery-image{display:none;width:100%;height:100%;align-items:center;justify-content:center}.gallery-image img{max-height:550px;object-fit:contain}.thumbnail-row{display:flex;gap:15px;flex-wrap:wrap;justify-content:center}.thumbnail{width:120px;height:120px;background:var(--bg);border:2px solid var(--border);border-radius:4px;padding:5px;cursor:pointer;transition:all .3s;display:block}.thumbnail img{width:100%;height:100%;object-fit:contain}.thumbnail:hover{border-color:var(--primary-red);box-shadow:0 0 10px ' + hexToRgba(theme.primary, 0.3) + '}.product-info{padding:10px 0}.product-title{font-size:1.6em;font-weight:700;color:var(--text);margin-bottom:25px;line-height:1.4}.spec-list{list-style:none}.spec-item{padding:10px 0;border-bottom:1px solid var(--border);font-size:.95em;display:flex}.spec-label{font-weight:600;color:var(--text);min-width:180px}.spec-value{color:var(--text);opacity:0.7;flex:1}.accordion-section{padding:20px 0;background:var(--bg)}.accordion-container{max-width:700px;margin:0 auto}.accordion-item{margin-bottom:20px}.accordion-checkbox{display:none}.accordion-label{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;background:' + hexToRgba(theme.secondary, 0.08) + ';border-radius:12px;font-size:1.1em;font-weight:700;color:var(--text);cursor:pointer;transition:all .3s ease;position:relative}.accordion-label:hover{background:' + hexToRgba(theme.secondary, 0.15) + '}.accordion-label:after{content:\'▼\';font-size:0.7em;color:var(--primary-red);transition:transform .3s ease;display:inline-block;width:20px;text-align:right}.accordion-checkbox:checked+.accordion-label:after{transform:rotate(180deg)}.accordion-content{max-height:0;overflow:hidden;transition:max-height .4s ease-in-out,opacity .3s ease,padding .3s ease;opacity:0;padding:0 22px}.accordion-checkbox:checked~.accordion-content{max-height:5000px;opacity:1;padding:24px 22px}.accordion-content-inner{border-radius:0 0 12px 12px}.accordion-content h3{font-size:1.1em;font-weight:700;color:var(--text);margin:25px 0 15px;padding-bottom:8px;border-bottom:2px solid var(--primary-red);display:inline-block}.accordion-content h3:first-child{margin-top:0}.accordion-content p{color:var(--text);opacity:0.8;line-height:1.9;margin-bottom:15px;font-size:.95em}.accordion-content strong{color:var(--primary-red);font-weight:700}.content-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;padding:15px;background:' + hexToRgba(theme.secondary, 0.05) + ';border-radius:8px;border:1px solid var(--border)}.content-tag{display:inline-flex;align-items:center;padding:8px 16px;background:' + theme.primary + ';color:' + theme.bg + ';border-radius:20px;font-size:.9em;font-weight:600;box-shadow:0 2px 4px ' + hexToRgba(theme.primary, 0.2) + '}.footer-section{background:var(--text);padding:60px 20px 30px}.footer-container{max-width:1200px;margin:0 auto}.footer-top{display:flex;flex-direction:column;align-items:center;text-align:center;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}.footer-brand{text-align:center}.footer-logo-text{font-size:1.8em;font-weight:800;color:' + theme.primary + ';letter-spacing:2px;margin-bottom:12px}.footer-slogan{color:rgba(255,255,255,.6);font-size:.95em;line-height:1.6}.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:60px}.footer-col h4{font-size:1em;font-weight:700;color:#fff;margin-bottom:20px;text-transform:uppercase;letter-spacing:1px}.footer-col ul{list-style:none}.footer-col li{margin-bottom:12px}.footer-col a{color:rgba(255,255,255,.6);font-size:.9em;transition:all .3s}.footer-col a:hover{color:' + theme.primary + ';padding-left:5px}.footer-bottom{padding-top:30px;display:flex;flex-direction:column;align-items:center;gap:20px}.payment-icons{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}.payment-icon{width:50px;height:32px;background:rgba(255,255,255,.1);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.75em;font-weight:700;color:#fff}.copyright-text{color:rgba(255,255,255,.5);font-size:.85em;text-align:center}@media(max-width:768px){.product-container{grid-template-columns:1fr;gap:30px}.product-gallery{padding:15px}.main-image{min-height:300px;padding:10px}.gallery-image img{max-height:280px}.thumbnail{width:80px;height:80px}.product-title{font-size:1.3em}.spec-item{flex-direction:column;gap:5px}.spec-label{min-width:auto;font-weight:700}}</style>';
+        }
+
         function switchTab(tabId) {
             document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
@@ -4411,6 +5215,10 @@
         }
         
         function generateHTML() {
+              // 多产品（组合装）模式走独立渲染分支
+              if (editorMode === 'multi') {
+                  return generateMultiHTML();
+              }
               const theme = getCurrentThemeColors();
               const productTitle = document.getElementById('productTitle').value;
               const descContent = getEditorContent('descEditor');
@@ -4737,6 +5545,7 @@
 
                 loadAIConfig();
                 initThemeSelector();
+                applyModeUI();
                 updatePreview();
                 
                 // 初始化模板拖拽上传
@@ -5028,9 +5837,30 @@
     {"label": "规格名称", "value": "规格值"}
   ]
 }`,
-                test: '你是一个测试助手，请简短回复。'
+                test: '你是一个测试助手，请简短回复。',
+                multiProduct: `你是一个eBay组合装（多产品）信息生成专家，擅长用${language}为组合装中的每一款子产品分别生成规格、描述与包装内容。
+
+严格输出要求：
+- 只返回一个 JSON 对象，不要任何 markdown 代码块标记、不要解释性文字、不要前后空行。
+- JSON 顶层结构：{"products": [ ... ]}
+- products 是数组，数组第 0 项对应页面第 1 个产品单元，第 1 项对应第 2 个产品单元，依此类推，顺序与页面从上到下一一对应。
+- 每个子产品对象包含三个字段：
+  - "specs": 产品规格数组 [{"label":"规格名称","value":"规格值"}, ...]
+  - "description": 产品描述（HTML 格式，使用五点描述法，包含 <h3>/<ul><li> 等标签）
+  - "inTheBox": 该产品的包装内容（HTML 格式，如 <ul><li>物品A</li><li>物品B</li></ul>）
+
+生成原则：
+- 规格标签清晰、值准确，覆盖核心参数。
+- 描述专业、有吸引力，突出该子产品自身卖点。
+- 包装内容列出该产品包装盒内包含的所有物品。
+- ${language === '英文' ? '英文版' : language === '中文' ? '中文版' : '中英双语'}
+
+返回格式示例：
+{"products":[{"specs":[{"label":"Brand","value":"Example"}],"description":"<h3>Product 1 Highlights</h3><ul><li>...</li></ul>","inTheBox":"<ul><li>Product 1</li><li>Accessory</li></ul>"},{"specs":[{"label":"Brand","value":"Example"}],"description":"<h3>Product 2 Highlights</h3><ul><li>...</li></ul>","inTheBox":"<ul><li>Product 2</li><li>Cable</li></ul>"}]}
+
+重要：products 数组长度必须等于用户要求生成的组合产品数量；数组顺序必须与页面产品单元从上到下的顺序一一对应。`
             };
-            
+
             return prompts[type] || prompts.chat;
         }
         
@@ -5133,20 +5963,25 @@
         }
         
         async function generateProductInfo() {
-            const productInfo = document.getElementById('aiProductInfoInput').value.trim();
-            
-            if (!productInfo) {
-                alert('请输入产品信息');
-                return;
-            }
-            
             if (!aiConfig.apiKey) {
                 alert('请先配置API密钥');
                 return;
             }
-            
+
+            // 模式感知：组合装模式走结构化多产品分支
+            if (editorMode === 'multi') {
+                await generateMultiProductInfo();
+                return;
+            }
+
+            const productInfo = document.getElementById('aiProductInfoInput').value.trim();
+            if (!productInfo) {
+                alert('请输入产品信息');
+                return;
+            }
+
             showAILoading('正在生成产品信息...');
-            
+
             try {
                 const response = await callDeepSeekAPI(productInfo, 'productInfo');
                 parseAndFillProductInfo(response);
@@ -5156,6 +5991,199 @@
                 hideAILoading();
                 alert('生成产品信息失败：' + error.message);
             }
+        }
+
+        // ============ 多产品（组合装）模式：AI 结构化生成 ============
+        // 入口：从每个产品独立输入框收集信息，组装分隔明确的 prompt，调用 AI，解析后按索引回填
+        async function generateMultiProductInfo() {
+            // 先保存当前输入框内容到数据
+            saveMultiProductInfoInputs();
+
+            const desiredCount = Math.max(multiProducts.length, 1);
+
+            // 从每个产品的独立输入框收集信息，组装成分隔明确的 prompt
+            let hasAnyInput = false;
+            const productInfoBlocks = multiProducts.map(function (prod, index) {
+                const info = (prod.aiInput || '').trim();
+                if (info) hasAnyInput = true;
+                const titlePart = prod.title ? ('（' + prod.title + '）') : '';
+                return '【产品 ' + (index + 1) + titlePart + '】\n' + (info || '（未填写，请根据组合装整体信息合理生成）');
+            });
+
+            if (!hasAnyInput) {
+                alert('请至少为一个产品填写信息（在 AI 助手中每个产品对应的独立输入框内输入）。');
+                return;
+            }
+
+            // 构造 prompt：每个产品信息用明确分隔符隔开，避免 AI 混淆
+            const prompt =
+                `请为以下组合装中的 ${desiredCount} 款子产品分别生成规格、描述与包装内容。\n\n` +
+                `每款产品的信息如下（请严格对应，不要混淆）：\n\n` +
+                productInfoBlocks.join('\n\n' + '─'.repeat(30) + '\n\n') +
+                `\n\n要求：\n` +
+                `1. 严格返回 JSON：{"products":[{"specs":[{"label":"","value":""}],"description":"HTML","inTheBox":"HTML"}]}\n` +
+                `2. products 数组长度必须等于 ${desiredCount}\n` +
+                `3. 数组第 0 项对应上方【产品 1】，第 1 项对应【产品 2】，依此类推，顺序一一对应\n` +
+                `4. 每款产品的规格、描述与包装内容仅基于该产品自身的信息生成，不要混入其他产品内容\n` +
+                `5. inTheBox 为该产品包装盒内的物品清单，HTML 格式\n` +
+                `6. 不要任何 markdown 标记或解释性文字`;
+
+            showAILoading('正在为 ' + desiredCount + ' 款组合产品生成信息...');
+
+            try {
+                const response = await callDeepSeekAPI(prompt, 'multiProduct');
+                const filled = parseAndFillMultiProductInfo(response);
+                hideAILoading();
+
+                if (filled.count > 0) {
+                    const labels = filled.filledIndices.map(i => 'Product ' + (i + 1)).join('、');
+                    alert('✅ 已按顺序填充至 ' + labels + ' 模块\n\n' +
+                          '共填充 ' + filled.count + ' 款产品（规格 + 描述 + 包装内容）。\n' +
+                          (filled.boxMerged ? '包装内容已合并至全局「包装内容」标签。\n' : '') +
+                          (filled.autoAdded > 0 ? '自动新增了 ' + filled.autoAdded + ' 个产品单元。\n' : '') +
+                          (filled.skipped > 0 ? '有 ' + filled.skipped + ' 款产品数据被跳过（格式异常）。' : ''));
+                } else {
+                    alert('⚠️ AI 返回内容未能解析出有效产品数据，未做任何修改。请重试或检查 AI 返回格式。');
+                }
+            } catch (error) {
+                hideAILoading();
+                alert('生成组合装产品信息失败：' + error.message + '\n\n现有表单数据未被修改。');
+            }
+        }
+
+        // 解析多产品 AI 响应并按索引回填，自动追加产品单元
+        function parseAndFillMultiProductInfo(aiResponse) {
+            const result = { count: 0, filledIndices: [], autoAdded: 0, skipped: 0, boxMerged: false };
+
+            try {
+                let cleanResponse = (aiResponse || '').trim();
+                if (cleanResponse.length < 10) {
+                    console.warn('AI响应过短，跳过回填');
+                    return result;
+                }
+
+                // 提取 markdown 代码块中的 JSON
+                const codeBlockMatch = cleanResponse.match(/```(?:json)?\s*([\s\S]*?)```/i);
+                if (codeBlockMatch) {
+                    cleanResponse = codeBlockMatch[1].trim();
+                }
+
+                // 定位 JSON 起止
+                const jsonStart = cleanResponse.indexOf('{');
+                const jsonEnd = cleanResponse.lastIndexOf('}');
+                if (jsonStart !== -1 && jsonEnd !== -1 && jsonEnd > jsonStart) {
+                    cleanResponse = cleanResponse.substring(jsonStart, jsonEnd + 1);
+                }
+
+                let data = null;
+                try {
+                    data = JSON.parse(cleanResponse);
+                } catch (e) {
+                    data = tryFixAndParseJSON(cleanResponse);
+                    if (!data) {
+                        console.error('多产品AI响应解析失败:', e.message);
+                        return result; // 不破坏现有数据
+                    }
+                }
+
+                // 兼容两种结构：{products:[...]} 或直接 [...]
+                let products = null;
+                if (Array.isArray(data)) {
+                    products = data;
+                } else if (data && Array.isArray(data.products)) {
+                    products = data.products;
+                } else if (data && typeof data === 'object') {
+                    // 单产品对象误入多产品分支，按单产品处理
+                    products = [data];
+                }
+
+                if (!products || !Array.isArray(products) || products.length === 0) {
+                    console.error('未找到有效的 products 数组');
+                    return result;
+                }
+
+                // 收集所有子产品的包装内容，用于合并到全局 boxEditor
+                var collectedBoxes = [];
+
+                // 回填：按索引逐项处理
+                products.forEach(function (prod, index) {
+                    if (!prod || typeof prod !== 'object') {
+                        result.skipped++;
+                        return;
+                    }
+
+                    // 若 AI 返回数量多于现有单元，自动新增
+                    while (multiProducts.length <= index) {
+                        multiProducts.push(createBlankProduct());
+                        result.autoAdded++;
+                    }
+
+                    var target = multiProducts[index];
+                    var filledThis = false;
+
+                    // 回填规格
+                    if (Array.isArray(prod.specs)) {
+                        target.specs = prod.specs.map(function (s) {
+                            return {
+                                label: (s && s.label) ? String(s.label) : '',
+                                value: (s && s.value) ? String(s.value) : ''
+                            };
+                        });
+                        filledThis = true;
+                    }
+
+                    // 回填描述
+                    if (typeof prod.description === 'string' && prod.description.trim()) {
+                        target.descContent = prod.description;
+                        filledThis = true;
+                    }
+
+                    // 收集包装内容（多产品共用一个全局包装标签，稍后合并）
+                    if (typeof prod.inTheBox === 'string' && prod.inTheBox.trim()) {
+                        collectedBoxes.push({ index: index, html: prod.inTheBox.trim() });
+                    }
+
+                    if (filledThis) {
+                        result.count++;
+                        result.filledIndices.push(index);
+                    } else {
+                        result.skipped++;
+                    }
+                });
+
+                // 合并所有子产品的包装内容到全局 boxEditor
+                if (collectedBoxes.length > 0) {
+                    var boxEditor = document.getElementById('boxEditor');
+                    if (boxEditor) {
+                        var mergedBox = '';
+                        if (collectedBoxes.length === 1) {
+                            // 只有一个产品有包装内容，直接使用
+                            mergedBox = collectedBoxes[0].html;
+                        } else {
+                            // 多个产品：按产品分块合并，保留各自归属
+                            collectedBoxes.forEach(function (item) {
+                                var prod = multiProducts[item.index];
+                                var prodTitle = (prod && prod.title) ? escapeHTML(prod.title) : ('Product ' + (item.index + 1));
+                                mergedBox += '<h3>' + prodTitle + '</h3>' + item.html;
+                            });
+                        }
+                        boxEditor.innerHTML = mergedBox;
+                        result.boxMerged = true;
+                    }
+                }
+
+                // 刷新 UI 与预览
+                if (result.count > 0) {
+                    renderMultiProducts();
+                    renderMultiDesc();
+                    updatePreview();
+                }
+            } catch (err) {
+                console.error('多产品回填过程异常:', err);
+                // 不破坏现有数据
+            }
+
+            return result;
         }
         
         function parseAndFillProductInfo(aiResponse) {
@@ -6190,7 +7218,21 @@
                         slogan: document.getElementById('brandSlogan').value,
                         paymentIcons: document.getElementById('paymentIcons').value,
                         copyright: document.getElementById('copyrightText').value
-                    }
+                    },
+                    // 编辑模式与多产品数据（组合装模式专用，单产品模式为 single）
+                    editorMode: editorMode,
+                    multiProducts: editorMode === 'multi' ? JSON.parse(JSON.stringify(multiProducts.map(function(p){
+                        // 描述内容实时同步到数据
+                        var ed = document.getElementById('mpDescEditor-' + multiProducts.indexOf(p));
+                        return {
+                            title: p.title,
+                            images: p.images.map(function(im){return {src:im.src, alt:im.alt};}),
+                            specs: p.specs.map(function(s){return {label:s.label, value:s.value};}),
+                            descContent: ed ? ed.innerHTML : (p.descContent || ''),
+                            descTags: (p.descTags || []).slice(),
+                            aiInput: p.aiInput || ''
+                        };
+                    }))) : []
                 }
             };
             
@@ -6522,7 +7564,41 @@
                         document.getElementById('copyrightText').value = data.brand.copyright;
                     }
                 }
-                
+
+                // 12.5 恢复编辑模式与多产品数据（组合装）
+                if (data.editorMode === 'multi' && Array.isArray(data.multiProducts) && data.multiProducts.length > 0) {
+                    multiProducts = data.multiProducts.map(function(p){
+                        return {
+                            title: p.title || '',
+                            images: (p.images || []).map(function(im){return {src:im.src||'', alt:im.alt||''};}),
+                            specs: (p.specs || []).map(function(s){return {label:s.label||'', value:s.value||''};}),
+                            descContent: p.descContent || '',
+                            descTags: (p.descTags || []).slice(),
+                            aiInput: p.aiInput || ''
+                        };
+                    });
+                    editorMode = 'multi';
+                    applyModeUI();
+                    renderMultiProducts();
+                    renderMultiDesc();
+                } else {
+                    // 单产品模式：恢复默认
+                    editorMode = 'single';
+                    if (Array.isArray(data.multiProducts) && data.multiProducts.length > 0) {
+                        multiProducts = data.multiProducts.map(function(p){
+                            return {
+                                title: p.title || '',
+                                images: (p.images || []).map(function(im){return {src:im.src||'', alt:im.alt||''};}),
+                                specs: (p.specs || []).map(function(s){return {label:s.label||'', value:s.value||''};}),
+                                descContent: p.descContent || '',
+                                descTags: (p.descTags || []).slice(),
+                                aiInput: p.aiInput || ''
+                            };
+                        });
+                    }
+                    applyModeUI();
+                }
+
                 // 12. 重新初始化主题选择器显示
                 initThemeSelector();
                 
