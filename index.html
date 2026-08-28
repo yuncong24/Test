@@ -2218,6 +2218,18 @@
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.76), inset 0 1px 0 rgba(255,255,255,0.06);
             backdrop-filter: blur(14px);
         }
+        /*登录框logo*/
+        .logo-wrap {
+            text-align: center;
+            margin-bottom:8px; /* 和下方登录表单拉开距离 */
+        }
+        /*logo大小*/
+        .site-logo {
+            height: 88px;
+            width: auto;
+        }
+
+
         .login-card::before {
             content: '';
             position: absolute;
@@ -2230,7 +2242,7 @@
             text-align: center;
             margin-bottom: 26px;
         }
-        .login-brand .logo-mark {
+        /*.login-brand .logo-mark {
             display: inline-block;
             width: 46px; height: 46px;
             line-height: 44px;
@@ -2241,7 +2253,7 @@
             letter-spacing: 1px;
             border-radius: 50%;
             margin-bottom: 12px;
-        }
+        }*/
         .login-brand h2 {
             color: #000000;
             font-size: 17px;
@@ -2390,8 +2402,13 @@
     <!-- 登录遮罩：未登录时覆盖整页 -->
     <div id="loginOverlay">
         <form class="login-card" id="loginForm" autocomplete="off">
+            <div class="logo-wrap">
+                <a href="/">
+                    <img class="site-logo" src="./logo.png" alt="网站Logo">
+                </a>
+            </div>
             <div class="login-brand">
-                <span class="logo-mark">L</span>
+                <!--<span class="logo-mark">L</span>-->
                 <h2>Lishting 编辑器</h2>
                 <p>Authorized Access Only</p>
             </div>
